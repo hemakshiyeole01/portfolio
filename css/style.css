@@ -91,7 +91,7 @@ nav a:hover, nav a.active { color:var(--text); background:rgba(108,99,255,0.2); 
 
 /* ---- LAYOUT ---- */
 .wrapper { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 24px; }
-section { padding:100px 0; }
+section { padding:60px 0; }
 .section-divider { height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); }
 
 /* ---- LABELS & HEADINGS ---- */
@@ -105,7 +105,7 @@ section { padding:100px 0; }
   font-family: var(--fd); font-size:clamp(32px,5vw,48px); font-weight:700;
   line-height:1.1; color:var(--text); margin-bottom:16px;
 }
-.section-sub { font-size:16px; color:var(--text2); max-width:540px; margin-bottom:60px; line-height:1.7; }
+.section-sub { font-size:16px; color:var(--text2); max-width:700px; margin-bottom:40px; line-height:1.7; }
 
 /* ---- GLASS CARD ---- */
 .glass {
@@ -160,7 +160,7 @@ section { padding:100px 0; }
 .reveal-delay-3 { transition-delay:0.3s; }
 
 /* ---- PAGE HEADER (inner pages) ---- */
-.page-hero { padding:160px 0 80px; }
+.page-hero { padding:120px 0 48px; }
 .page-hero h1 { font-family:var(--fd); font-size:clamp(36px,6vw,64px); font-weight:800; line-height:1; color:var(--text); margin-bottom:16px; }
 .page-hero h1 span { background:linear-gradient(135deg,var(--accent2),var(--accent3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .page-hero p { font-size:16px; color:var(--text2); max-width:520px; line-height:1.8; }
@@ -183,4 +183,56 @@ footer { border-top:1px solid var(--border); padding:40px 0; }
 @media (max-width:768px) {
   nav { display:none; }
   section { padding:60px 0; }
+}
+
+/* Magnetic button feel */
+.btn-primary, .btn-secondary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after, .btn-secondary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.12), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.btn-primary:hover::after, .btn-secondary:hover::after { opacity: 1; }
+
+/* Skill pill glow on hover */
+.skill-pill:hover {
+  box-shadow: 0 0 16px rgba(108,99,255,0.25);
+}
+
+/* Nav logo hover */
+.nav-logo:hover { color: var(--accent2); }
+
+/* Stat counter pop */
+.stat-num {
+  transition: transform 0.2s;
+}
+.stat:hover .stat-num { transform: scale(1.08); }
+
+/* Underline link animation — replaces plain "View all" */
+.view-all {
+  position: relative;
+  padding-bottom: 2px;
+}
+.view-all::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent2);
+  transition: width 0.3s;
+}
+.view-all:hover::after { width: 100%; }
+
+/* Section heading accent word */
+.accent-word {
+  background: linear-gradient(135deg, var(--accent2), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

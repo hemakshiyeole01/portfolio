@@ -31,7 +31,14 @@ if (sections.length && navLinks.length) {
     });
   });
 }
-
+// Radial glow follows cursor on buttons
+document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const r = btn.getBoundingClientRect();
+    btn.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    btn.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
 // GLASS TILT
 document.querySelectorAll('.glass').forEach(card => {
   card.addEventListener('mousemove', (e) => {
