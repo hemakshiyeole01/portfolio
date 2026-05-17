@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Skills — Hemakshi Yeole</title>
+<link rel="stylesheet" href="../css/style.css"/>
+<style>
+.skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; margin-bottom:60px; }
+.skill-cat { padding:24px; }
+.skill-cat-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+.skill-cat-icon { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.skill-cat h3 { font-family:var(--fd); font-size:14px; font-weight:600; color:var(--text); }
+.skill-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.skill-tag {
+  padding:5px 12px; border-radius:8px; font-size:12px; color:var(--text2);
+  background:rgba(255,255,255,0.04); border:1px solid var(--border); transition:all 0.2s; cursor:default;
+}
+.skill-tag:hover { color:var(--text); border-color:var(--accent); background:rgba(108,99,255,0.1); transform:translateY(-1px); }
+
+/* proficiency dots */
+.skill-tag-row { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.dots { display:flex; gap:3px; }
+.dot-fill { width:6px; height:6px; border-radius:50%; background:var(--accent); }
+.dot-empty { width:6px; height:6px; border-radius:50%; background:var(--bg3); border:1px solid var(--border); }
+
+.concepts-section { margin-top:20px; }
+.concepts-section h3 { font-family:var(--fd); font-size:18px; font-weight:700; color:var(--text); margin-bottom:16px; }
+.concepts-grid { display:flex; flex-wrap:wrap; gap:10px; }
+.concept-chip {
+  padding:6px 14px; background:rgba(167,139,250,0.08); border:1px solid rgba(167,139,250,0.2);
+  border-radius:20px; font-size:12px; color:var(--accent2);
+}
+
+.workflow { display:flex; gap:0; margin-top:60px; overflow-x:auto; padding-bottom:8px; }
+.workflow-step {
+  flex:1; min-width:120px; display:flex; flex-direction:column; align-items:center;
+  gap:10px; position:relative; padding:24px 16px;
+}
+.workflow-step:not(:last-child)::after {
+  content:'→'; position:absolute; right:-8px; top:50%; transform:translateY(-50%);
+  color:var(--text3); font-size:16px; z-index:2;
+}
+.workflow-icon { width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; background:rgba(108,99,255,0.1); border:1px solid rgba(108,99,255,0.2); }
+.workflow-label { font-size:13px; font-weight:500; color:var(--text); text-align:center; }
+.workflow-sub { font-size:11px; color:var(--text3); text-align:center; }
+
+@media(max-width:600px){ .workflow{flex-direction:column;} .workflow-step::after{display:none;} }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div>
+</div>
+
+<nav>
+  <a href="../index.html" class="nav-logo">HY</a>
+  <a href="../index.html#about">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="skills.html" class="active">Skills</a>
+  <a href="certifications.html">Certifications</a>
+  <a href="../index.html#contact">Contact</a>
+</nav>
+
+<div class="wrapper">
+  <div class="page-hero">
+    <a href="../index.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Back home
+    </a>
+    <h1>Skills & <span>Tools</span></h1>
+    <p>The full technical stack I work with — from languages and databases to AI tooling and data engineering infrastructure.</p>
+  </div>
+
+  <div class="skills-grid">
+    <div class="glass skill-cat reveal">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:rgba(108,99,255,0.15);">💻</div>
+        <h3>Languages</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">R</span>
+      </div>
+    </div>
+
+    <div class="glass skill-cat reveal reveal-delay-1">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:rgba(56,189,248,0.15);">⚡</div>
+        <h3>Data Engineering</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Apache Kafka</span>
+        <span class="skill-tag">Apache Airflow</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">N8N</span>
+        <span class="skill-tag">HuggingFace</span>
+      </div>
+    </div>
+
+    <div class="glass skill-cat reveal reveal-delay-2">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:rgba(52,211,153,0.15);">🗄️</div>
+        <h3>Databases</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">PostGIS</span>
+      </div>
+    </div>
+
+    <div class="glass skill-cat reveal reveal-delay-3">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:rgba(251,191,36,0.15);">📈</div>
+        <h3>Analytics & BI</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">RapidMiner</span>
+        <span class="skill-tag">Google Colab</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">GitHub</span>
+      </div>
+    </div>
+
+    <div class="glass skill-cat reveal">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:rgba(244,114,182,0.15);">🌐</div>
+        <h3>Web & Frameworks</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">Tailwind CSS</span>
+        <span class="skill-tag">Wix Studio</span>
+      </div>
+    </div>
+
+    <div class="glass skill-cat reveal reveal-delay-1">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:rgba(167,139,250,0.15);">🤖</div>
+        <h3>AI Tools</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Claude AI</span>
+        <span class="skill-tag">Gemini</span>
+        <span class="skill-tag">Farmer.ai</span>
+        <span class="skill-tag">HuggingFace</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPTS -->
+  <div class="concepts-section reveal">
+    <div class="section-label">CS Fundamentals</div>
+    <h3>Core concepts & knowledge areas</h3>
+    <br/>
+    <div class="concepts-grid">
+      <span class="concept-chip">Natural Language Processing</span>
+      <span class="concept-chip">Machine Learning</span>
+      <span class="concept-chip">Reinforcement Learning</span>
+      <span class="concept-chip">Data Structures & Algorithms</span>
+      <span class="concept-chip">Object-Oriented Programming</span>
+      <span class="concept-chip">Database Management Systems</span>
+      <span class="concept-chip">Operating Systems</span>
+      <span class="concept-chip">Computer Networks</span>
+      <span class="concept-chip">Software Engineering</span>
+      <span class="concept-chip">Statistical Analysis</span>
+    </div>
+  </div>
+
+  <!-- WORKFLOW -->
+  <div style="margin-top:60px;" class="reveal">
+    <div class="section-label">My Workflow</div>
+    <h2 class="section-heading" style="margin-bottom:32px;">How I approach a data problem</h2>
+    <div class="workflow">
+      <div class="glass workflow-step">
+        <div class="workflow-icon">🔍</div>
+        <div class="workflow-label">Collect</div>
+        <div class="workflow-sub">APIs, datasets, streams</div>
+      </div>
+      <div class="glass workflow-step">
+        <div class="workflow-icon">🧹</div>
+        <div class="workflow-label">Clean</div>
+        <div class="workflow-sub">Preprocess & validate</div>
+      </div>
+      <div class="glass workflow-step">
+        <div class="workflow-icon">📊</div>
+        <div class="workflow-label">Analyse</div>
+        <div class="workflow-sub">EDA, model, infer</div>
+      </div>
+      <div class="glass workflow-step">
+        <div class="workflow-icon">🖥️</div>
+        <div class="workflow-label">Visualise</div>
+        <div class="workflow-sub">Dashboards & reports</div>
+      </div>
+      <div class="glass workflow-step">
+        <div class="workflow-icon">🚀</div>
+        <div class="workflow-label">Deploy</div>
+        <div class="workflow-sub">Containerise & ship</div>
+      </div>
+    </div>
+  </div>
+  <br/><br/>
+</div>
+
+<footer>
+  <div class="wrapper">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Hemakshi Yeole</div>
+        <div class="footer-copy" style="margin-top:4px;">© 2026 · RCOEM Nagpur</div>
+      </div>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
