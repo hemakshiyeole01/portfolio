@@ -4,229 +4,452 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Skills — Hemakshi Yeole</title>
+<meta name="description" content="Full skills breakdown — languages, frameworks, data tools, and creative platforms used by Hemakshi Yeole."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../css/style.css"/>
 <style>
-.skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; margin-bottom:60px; }
-.skill-cat { padding:24px; }
-.skill-cat-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
-.skill-cat-icon { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
-.skill-cat h3 { font-family:var(--fd); font-size:14px; font-weight:600; color:var(--text); }
-.skill-tags { display:flex; flex-wrap:wrap; gap:8px; }
-.skill-tag {
-  padding:5px 12px; border-radius:8px; font-size:12px; color:var(--text2);
-  background:rgba(255,255,255,0.04); border:1px solid var(--border); transition:all 0.2s; cursor:default;
+.page-hero { background: var(--fog); }
+.page-hero-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 65% 70% at 95% 40%, rgba(170,156,237,.2) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 5%  60%, rgba(197,213,192,.22) 0%, transparent 55%),
+    var(--fog);
 }
-.skill-tag:hover { color:var(--text); border-color:var(--accent); background:rgba(108,99,255,0.1); transform:translateY(-1px); }
+.orb-a { width:380px;height:380px;top:-100px;left:-60px;background:radial-gradient(circle,var(--sage),transparent);opacity:.4;animation-delay:0s }
+.orb-b { width:280px;height:280px;bottom:-30px;right:-40px;background:radial-gradient(circle,var(--lilac),transparent);opacity:.4;animation-delay:-5s }
 
-/* proficiency dots */
-.skill-tag-row { display:flex; align-items:center; justify-content:space-between; width:100%; }
-.dots { display:flex; gap:3px; }
-.dot-fill { width:6px; height:6px; border-radius:50%; background:var(--accent); }
-.dot-empty { width:6px; height:6px; border-radius:50%; background:var(--bg3); border:1px solid var(--border); }
+.page-body { padding:4rem 2rem 6rem; background:var(--surface-base); }
+.page-body-inner { max-width:1100px; margin:0 auto; }
 
-.concepts-section { margin-top:20px; }
-.concepts-section h3 { font-family:var(--fd); font-size:18px; font-weight:700; color:var(--text); margin-bottom:16px; }
-.concepts-grid { display:flex; flex-wrap:wrap; gap:10px; }
-.concept-chip {
-  padding:6px 14px; background:rgba(167,139,250,0.08); border:1px solid rgba(167,139,250,0.2);
-  border-radius:20px; font-size:12px; color:var(--accent2);
+/* TAB BAR */
+.tab-wrap {
+  margin-top:2.25rem;
+  opacity:0; animation:slide-up .6s var(--ease-out) .5s forwards;
 }
 
-.workflow { display:flex; gap:0; margin-top:60px; overflow-x:auto; padding-bottom:8px; }
-.workflow-step {
-  flex:1; min-width:120px; display:flex; flex-direction:column; align-items:center;
-  gap:10px; position:relative; padding:24px 16px;
+/* SKILL CATEGORY CARDS GRID */
+.skill-cat-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px,1fr));
+  gap:1.25rem; margin-top:2.5rem;
 }
-.workflow-step:not(:last-child)::after {
-  content:'→'; position:absolute; right:-8px; top:50%; transform:translateY(-50%);
-  color:var(--text3); font-size:16px; z-index:2;
-}
-.workflow-icon { width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; background:rgba(108,99,255,0.1); border:1px solid rgba(108,99,255,0.2); }
-.workflow-label { font-size:13px; font-weight:500; color:var(--text); text-align:center; }
-.workflow-sub { font-size:11px; color:var(--text3); text-align:center; }
 
-@media(max-width:600px){ .workflow{flex-direction:column;} .workflow-step::after{display:none;} }
+/* PROFICIENCY SECTION */
+.proficiency-wrap { max-width:720px; }
+.skill-group-title {
+  font-size:.78rem; font-weight:600; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--text-muted);
+  margin-top:2rem; margin-bottom:.5rem;
+}
+
+/* TOOLS VISUAL GRID */
+.tools-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(140px,1fr));
+  gap:1rem; margin-top:2.5rem;
+}
+.tool-chip {
+  background:var(--surface-white); border:1px solid var(--border-soft);
+  border-radius:14px; padding:1.1rem 1rem;
+  display:flex; flex-direction:column; align-items:center; gap:.6rem;
+  text-align:center;
+  transition:transform .25s var(--ease-bounce), box-shadow .25s, border-color .2s;
+  cursor:default;
+}
+.tool-chip:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); border-color:var(--mauve); }
+.tool-chip-icon  { font-size:2rem; }
+.tool-chip-name  { font-size:.8125rem; font-weight:500; color:var(--text-secondary); line-height:1.3; }
+.tool-chip-sub   { font-size:.72rem; color:var(--text-muted); }
+
+/* CONCEPTS SECTION */
+.concepts-cloud { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.75rem; }
+
+/* SECTION LABEL INLINE */
+.inline-label {
+  font-size:.75rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--plum); font-weight:600;
+  display:flex; align-items:center; gap:.5rem;
+  margin-bottom:1rem; margin-top:2.75rem;
+}
+.inline-label::before { content:''; width:20px; height:1.5px; background:var(--plum); }
+
+/* CURRENTLY LEARNING CARDS */
+.learning-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:1rem; margin-top:1.5rem;
+}
+.learning-card {
+  background:var(--surface-white); border-radius:16px;
+  border:1px solid var(--border-soft); padding:1.25rem;
+  transition:transform .3s var(--ease-bounce), box-shadow .25s;
+}
+.learning-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); border-color:var(--mauve); }
+.learning-icon  { font-size:1.75rem; margin-bottom:.6rem; }
+.learning-title { font-weight:600; color:var(--deep); font-size:.9375rem; margin-bottom:.25rem; }
+.learning-desc  { font-size:.8125rem; color:var(--text-muted); line-height:1.6; }
+.learning-tag   {
+  display:inline-block; background:rgba(170,156,237,.15);
+  border:1px solid rgba(170,156,237,.3); color:var(--periwinkle);
+  padding:.2rem .6rem; border-radius:50px; font-size:.72rem; font-weight:600;
+  margin-top:.6rem;
+}
+
+@media(max-width:600px) {
+  .tools-grid { grid-template-columns:repeat(3,1fr); }
+  .skill-cat-grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
 <div id="progress-bar"></div>
-<div class="bg-blobs" aria-hidden="true">
-  <div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div>
-</div>
+<div id="cursor-glow"></div>
 
-<nav>
+<nav class="navbar" id="navbar">
   <a href="../index.html" class="nav-logo">HY</a>
-  <a href="../index.html#about">About</a>
-  <a href="projects.html">Projects</a>
-  <a href="skills.html" class="active">Skills</a>
-  <a href="certifications.html">Certifications</a>
-  <a href="../index.html#contact">Contact</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="skills.html" class="active">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<div class="wrapper">
-  <div class="page-hero">
-    <a href="../index.html" class="back-link">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-      Back home
-    </a>
-    <h1>Skills & <span>Tools</span></h1>
-    <p>The full technical stack I work with — from languages and databases to AI tooling and data engineering infrastructure.</p>
-  </div>
-
-  <div class="skills-grid">
-    <div class="glass skill-cat reveal">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon" style="background:rgba(108,99,255,0.15);">💻</div>
-        <h3>Languages</h3>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">Java</span>
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">HTML / CSS</span>
-        <span class="skill-tag">R</span>
-      </div>
+<!-- HERO -->
+<div class="page-hero" style="position:relative;overflow:hidden">
+  <div class="page-hero-bg"></div>
+  <div class="hero-orb orb-a"></div>
+  <div class="hero-orb orb-b"></div>
+  <div class="page-hero-inner">
+    <div class="page-breadcrumb">
+      <a href="../index.html">Home</a><span class="sep"> › </span><span class="current">Skills</span>
     </div>
-
-    <div class="glass skill-cat reveal reveal-delay-1">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon" style="background:rgba(56,189,248,0.15);">⚡</div>
-        <h3>Data Engineering</h3>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Apache Kafka</span>
-        <span class="skill-tag">Apache Airflow</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">N8N</span>
-        <span class="skill-tag">HuggingFace</span>
-      </div>
-    </div>
-
-    <div class="glass skill-cat reveal reveal-delay-2">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon" style="background:rgba(52,211,153,0.15);">🗄️</div>
-        <h3>Databases</h3>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">MySQL</span>
-        <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">MongoDB</span>
-        <span class="skill-tag">PostGIS</span>
-      </div>
-    </div>
-
-    <div class="glass skill-cat reveal reveal-delay-3">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon" style="background:rgba(251,191,36,0.15);">📈</div>
-        <h3>Analytics & BI</h3>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Power BI</span>
-        <span class="skill-tag">RapidMiner</span>
-        <span class="skill-tag">Google Colab</span>
-        <span class="skill-tag">VS Code</span>
-        <span class="skill-tag">GitHub</span>
-      </div>
-    </div>
-
-    <div class="glass skill-cat reveal">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon" style="background:rgba(244,114,182,0.15);">🌐</div>
-        <h3>Web & Frameworks</h3>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">FastAPI</span>
-        <span class="skill-tag">Tailwind CSS</span>
-        <span class="skill-tag">Wix Studio</span>
-      </div>
-    </div>
-
-    <div class="glass skill-cat reveal reveal-delay-1">
-      <div class="skill-cat-header">
-        <div class="skill-cat-icon" style="background:rgba(167,139,250,0.15);">🤖</div>
-        <h3>AI Tools</h3>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Claude AI</span>
-        <span class="skill-tag">Gemini</span>
-        <span class="skill-tag">Farmer.ai</span>
-        <span class="skill-tag">HuggingFace</span>
+    <h1 class="page-hero-title">Things I'm good <em>at</em></h1>
+    <p class="page-hero-subtitle">Built across real projects—not just tutorials. Every tool here has been used to ship something.</p>
+    <div class="tab-wrap">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="overview">Overview</button>
+        <button class="tab-btn" data-tab="proficiency">Proficiency</button>
+        <button class="tab-btn" data-tab="tools">Tools &amp; platforms</button>
+        <button class="tab-btn" data-tab="concepts">CS concepts</button>
       </div>
     </div>
   </div>
-
-  <!-- CONCEPTS -->
-  <div class="concepts-section reveal">
-    <div class="section-label">CS Fundamentals</div>
-    <h3>Core concepts & knowledge areas</h3>
-    <br/>
-    <div class="concepts-grid">
-      <span class="concept-chip">Natural Language Processing</span>
-      <span class="concept-chip">Machine Learning</span>
-      <span class="concept-chip">Reinforcement Learning</span>
-      <span class="concept-chip">Data Structures & Algorithms</span>
-      <span class="concept-chip">Object-Oriented Programming</span>
-      <span class="concept-chip">Database Management Systems</span>
-      <span class="concept-chip">Operating Systems</span>
-      <span class="concept-chip">Computer Networks</span>
-      <span class="concept-chip">Software Engineering</span>
-      <span class="concept-chip">Statistical Analysis</span>
-    </div>
-  </div>
-
-  <!-- WORKFLOW -->
-  <div style="margin-top:60px;" class="reveal">
-    <div class="section-label">My Workflow</div>
-    <h2 class="section-heading" style="margin-bottom:32px;">How I approach a data problem</h2>
-    <div class="workflow">
-      <div class="glass workflow-step">
-        <div class="workflow-icon">🔍</div>
-        <div class="workflow-label">Collect</div>
-        <div class="workflow-sub">APIs, datasets, streams</div>
-      </div>
-      <div class="glass workflow-step">
-        <div class="workflow-icon">🧹</div>
-        <div class="workflow-label">Clean</div>
-        <div class="workflow-sub">Preprocess & validate</div>
-      </div>
-      <div class="glass workflow-step">
-        <div class="workflow-icon">📊</div>
-        <div class="workflow-label">Analyse</div>
-        <div class="workflow-sub">EDA, model, infer</div>
-      </div>
-      <div class="glass workflow-step">
-        <div class="workflow-icon">🖥️</div>
-        <div class="workflow-label">Visualise</div>
-        <div class="workflow-sub">Dashboards & reports</div>
-      </div>
-      <div class="glass workflow-step">
-        <div class="workflow-icon">🚀</div>
-        <div class="workflow-label">Deploy</div>
-        <div class="workflow-sub">Containerise & ship</div>
-      </div>
-    </div>
-  </div>
-  <br/><br/>
 </div>
 
-<footer>
-  <div class="wrapper">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">Hemakshi Yeole</div>
-        <div class="footer-copy" style="margin-top:4px;">© 2026 · RCOEM Nagpur</div>
+<!-- BODY -->
+<main class="page-body">
+  <div class="page-body-inner">
+
+    <!-- ── TAB: OVERVIEW ── -->
+    <div class="tab-panel active" id="tab-overview">
+
+      <div class="inline-label reveal">Languages</div>
+      <div class="skill-cat-grid">
+        <div class="skill-card reveal" style="border-top:3px solid var(--plum)">
+          <div class="skill-card-icon" style="background:rgba(222,192,241,.3)">🐍</div>
+          <div class="skill-card-title">Python</div>
+          <div class="skill-tags"><span class="skill-tag">Data pipelines</span><span class="skill-tag">ML / NLP</span><span class="skill-tag">FastAPI</span><span class="skill-tag">Automation</span></div>
+        </div>
+        <div class="skill-card reveal reveal-d1" style="border-top:3px solid var(--periwinkle)">
+          <div class="skill-card-icon" style="background:rgba(170,156,237,.2)">☕</div>
+          <div class="skill-card-title">Java</div>
+          <div class="skill-tags"><span class="skill-tag">OOP</span><span class="skill-tag">DSA</span><span class="skill-tag">Backend logic</span></div>
+        </div>
+        <div class="skill-card reveal reveal-d2" style="border-top:3px solid var(--mauve)">
+          <div class="skill-card-icon" style="background:rgba(235,216,208,.4)">🌐</div>
+          <div class="skill-card-title">JavaScript</div>
+          <div class="skill-tags"><span class="skill-tag">React</span><span class="skill-tag">DOM manipulation</span><span class="skill-tag">Async/await</span></div>
+        </div>
+        <div class="skill-card reveal reveal-d3" style="border-top:3px solid var(--sage)">
+          <div class="skill-card-icon" style="background:rgba(197,213,192,.35)">📊</div>
+          <div class="skill-card-title">R</div>
+          <div class="skill-tags"><span class="skill-tag">Statistical analysis</span><span class="skill-tag">Visualisation</span><span class="skill-tag">Hypothesis testing</span></div>
+        </div>
+        <div class="skill-card reveal" style="border-top:3px solid var(--blush)">
+          <div class="skill-card-icon" style="background:rgba(235,216,208,.4)">🎨</div>
+          <div class="skill-card-title">HTML / CSS</div>
+          <div class="skill-tags"><span class="skill-tag">Semantic HTML</span><span class="skill-tag">Flexbox / Grid</span><span class="skill-tag">Responsive</span><span class="skill-tag">Animations</span></div>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="../index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="certifications.html">Certifications</a>
-        <a href="../index.html#contact">Contact</a>
+
+      <div class="inline-label reveal">Frameworks &amp; libraries</div>
+      <div class="skill-cat-grid">
+        <div class="skill-card reveal" style="border-top:3px solid var(--plum)">
+          <div class="skill-card-icon" style="background:rgba(170,156,237,.2)">⚛️</div>
+          <div class="skill-card-title">React</div>
+          <div class="skill-tags"><span class="skill-tag">Components</span><span class="skill-tag">Hooks</span><span class="skill-tag">State management</span></div>
+        </div>
+        <div class="skill-card reveal reveal-d1" style="border-top:3px solid var(--periwinkle)">
+          <div class="skill-card-icon" style="background:rgba(222,192,241,.3)">⚡</div>
+          <div class="skill-card-title">FastAPI</div>
+          <div class="skill-tags"><span class="skill-tag">REST APIs</span><span class="skill-tag">Pydantic</span><span class="skill-tag">Async endpoints</span></div>
+        </div>
+        <div class="skill-card reveal reveal-d2" style="border-top:3px solid var(--slate-blue)">
+          <div class="skill-card-icon" style="background:rgba(123,141,176,.15)">🤗</div>
+          <div class="skill-card-title">HuggingFace Transformers</div>
+          <div class="skill-tags"><span class="skill-tag">BERT / SBERT</span><span class="skill-tag">Fine-tuning</span><span class="skill-tag">Inference</span></div>
+        </div>
+        <div class="skill-card reveal reveal-d3" style="border-top:3px solid var(--dusty-rose)">
+          <div class="skill-card-icon" style="background:rgba(212,165,165,.25)">🔬</div>
+          <div class="skill-card-title">Scikit-learn</div>
+          <div class="skill-tags"><span class="skill-tag">Classification</span><span class="skill-tag">Regression</span><span class="skill-tag">Pipelines</span></div>
+        </div>
+        <div class="skill-card reveal" style="border-top:3px solid var(--warm-sand)">
+          <div class="skill-card-icon" style="background:rgba(232,213,196,.35)">💅</div>
+          <div class="skill-card-title">Tailwind CSS</div>
+          <div class="skill-tags"><span class="skill-tag">Utility-first</span><span class="skill-tag">Responsive</span><span class="skill-tag">Dark mode</span></div>
+        </div>
+      </div>
+
+      <div class="inline-label reveal">Data &amp; infrastructure</div>
+      <div class="skill-cat-grid">
+        <div class="skill-card reveal" style="border-top:3px solid #336791">
+          <div class="skill-card-icon" style="background:rgba(51,103,145,.1)">🐘</div>
+          <div class="skill-card-title">PostgreSQL / PostGIS</div>
+          <div class="skill-tags"><span class="skill-tag">Complex queries</span><span class="skill-tag">Spatial data</span><span class="skill-tag">Indexing</span></div>
+        </div>
+        <div class="skill-card reveal reveal-d1" style="border-top:3px solid #e67e22">
+          <div class="skill-card-icon" style="background:rgba(230,126,34,.1)">🔶</div>
+          <div class="skill-card-title">Apache Kafka</div>
+          <div class="skill-tags"><span class="skill-tag">Producers</span><span class="skill-tag">Consumers</span><span class="skill-tag">Stream processing</span></div>
+        </div>
+        <div class="skill-card reveal reveal-d2" style="border-top:3px solid #017cee">
+          <div class="skill-card-icon" style="background:rgba(1,124,238,.1)">🌬️</div>
+          <div class="skill-card-title">Apache Airflow</div>
+          <div class="skill-tags"><span class="skill-tag">DAG orchestration</span><span class="skill-tag">Scheduling</span><span class="skill-tag">Pipeline automation</span></div>
+        </div>
+        <div class="skill-card reveal reveal-d3" style="border-top:3px solid var(--plum)">
+          <div class="skill-card-icon" style="background:rgba(130,101,157,.12)">🐳</div>
+          <div class="skill-card-title">Docker</div>
+          <div class="skill-tags"><span class="skill-tag">Containerisation</span><span class="skill-tag">Compose</span><span class="skill-tag">Deployment</span></div>
+        </div>
+        <div class="skill-card reveal" style="border-top:3px solid #47a248">
+          <div class="skill-card-icon" style="background:rgba(71,162,72,.1)">🍃</div>
+          <div class="skill-card-title">MongoDB</div>
+          <div class="skill-tags"><span class="skill-tag">Document storage</span><span class="skill-tag">Aggregation</span></div>
+        </div>
+      </div>
+
+      <div class="inline-label reveal">Currently learning</div>
+      <div class="learning-grid">
+        <div class="learning-card reveal">
+          <div class="learning-icon">🦙</div>
+          <div class="learning-title">LLM Fine-tuning</div>
+          <div class="learning-desc">LoRA / QLoRA parameter-efficient fine-tuning of open-weight models.</div>
+          <span class="learning-tag">In progress</span>
+        </div>
+        <div class="learning-card reveal reveal-d1">
+          <div class="learning-icon">☸️</div>
+          <div class="learning-title">Kubernetes</div>
+          <div class="learning-desc">Container orchestration—pods, services, deployments for data workloads.</div>
+          <span class="learning-tag">In progress</span>
+        </div>
+        <div class="learning-card reveal reveal-d2">
+          <div class="learning-icon">🌊</div>
+          <div class="learning-title">dbt + Data Modelling</div>
+          <div class="learning-desc">Transformation layer on top of analytics databases, testing, documentation.</div>
+          <span class="learning-tag">In progress</span>
+        </div>
+        <div class="learning-card reveal reveal-d3">
+          <div class="learning-icon">📐</div>
+          <div class="learning-title">System Design</div>
+          <div class="learning-desc">Distributed systems, CAP theorem, designing for scale and reliability.</div>
+          <span class="learning-tag">In progress</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── TAB: PROFICIENCY ── -->
+    <div class="tab-panel" id="tab-proficiency">
+      <div class="proficiency-wrap">
+
+        <div class="skill-group-title reveal">Programming languages</div>
+        <div class="skill-row reveal" data-pct="90"><span class="skill-name">Python</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">90%</span></div>
+        <div class="skill-row reveal reveal-d1" data-pct="80"><span class="skill-name">HTML / CSS</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">80%</span></div>
+        <div class="skill-row reveal reveal-d2" data-pct="75"><span class="skill-name">JavaScript</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">75%</span></div>
+        <div class="skill-row reveal reveal-d3" data-pct="70"><span class="skill-name">Java</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">70%</span></div>
+        <div class="skill-row reveal" data-pct="65"><span class="skill-name">R</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">65%</span></div>
+
+        <div class="skill-group-title reveal">Frameworks &amp; libraries</div>
+        <div class="skill-row reveal" data-pct="80"><span class="skill-name">Tailwind CSS</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">80%</span></div>
+        <div class="skill-row reveal reveal-d1" data-pct="78"><span class="skill-name">React</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">78%</span></div>
+        <div class="skill-row reveal reveal-d2" data-pct="75"><span class="skill-name">FastAPI</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">75%</span></div>
+        <div class="skill-row reveal reveal-d3" data-pct="73"><span class="skill-name">Scikit-learn</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">73%</span></div>
+        <div class="skill-row reveal" data-pct="70"><span class="skill-name">HuggingFace Transformers</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">70%</span></div>
+
+        <div class="skill-group-title reveal">Data &amp; infrastructure</div>
+        <div class="skill-row reveal" data-pct="82"><span class="skill-name">PostgreSQL / MySQL</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">82%</span></div>
+        <div class="skill-row reveal reveal-d1" data-pct="78"><span class="skill-name">Power BI</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">78%</span></div>
+        <div class="skill-row reveal reveal-d2" data-pct="75"><span class="skill-name">Apache Kafka</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">75%</span></div>
+        <div class="skill-row reveal reveal-d3" data-pct="72"><span class="skill-name">Docker</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">72%</span></div>
+        <div class="skill-row reveal" data-pct="70"><span class="skill-name">MongoDB</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">70%</span></div>
+        <div class="skill-row reveal reveal-d1" data-pct="68"><span class="skill-name">Apache Airflow</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">68%</span></div>
+
+        <div class="skill-group-title reveal">Analytics &amp; visualisation</div>
+        <div class="skill-row reveal" data-pct="78"><span class="skill-name">Power BI</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">78%</span></div>
+        <div class="skill-row reveal reveal-d1" data-pct="75"><span class="skill-name">Matplotlib / Plotly</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">75%</span></div>
+        <div class="skill-row reveal reveal-d2" data-pct="70"><span class="skill-name">RapidMiner</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">70%</span></div>
+        <div class="skill-row reveal reveal-d3" data-pct="65"><span class="skill-name">R Studio</span><div class="skill-bar-wrap"><div class="skill-bar"></div></div><span class="skill-pct">65%</span></div>
+
+        <p style="margin-top:2rem;font-size:.8125rem;color:var(--text-muted);line-height:1.7">
+          Percentages reflect practical, hands-on proficiency from real projects — not self-assessed expertise ratings. Growth is continuous.
+        </p>
       </div>
     </div>
+
+    <!-- ── TAB: TOOLS & PLATFORMS ── -->
+    <div class="tab-panel" id="tab-tools">
+      <div class="inline-label reveal">Development</div>
+      <div class="tools-grid">
+        <div class="tool-chip reveal"><div class="tool-chip-icon">🐙</div><div class="tool-chip-name">GitHub</div><div class="tool-chip-sub">Version control</div></div>
+        <div class="tool-chip reveal reveal-d1"><div class="tool-chip-icon">🐳</div><div class="tool-chip-name">Docker</div><div class="tool-chip-sub">Containers</div></div>
+        <div class="tool-chip reveal reveal-d2"><div class="tool-chip-icon">🔶</div><div class="tool-chip-name">Kafka</div><div class="tool-chip-sub">Streaming</div></div>
+        <div class="tool-chip reveal reveal-d3"><div class="tool-chip-icon">🌬️</div><div class="tool-chip-name">Airflow</div><div class="tool-chip-sub">Orchestration</div></div>
+        <div class="tool-chip reveal"><div class="tool-chip-icon">⚡</div><div class="tool-chip-name">VS Code</div><div class="tool-chip-sub">IDE</div></div>
+        <div class="tool-chip reveal reveal-d1"><div class="tool-chip-icon">📓</div><div class="tool-chip-name">Jupyter</div><div class="tool-chip-sub">Notebooks</div></div>
+        <div class="tool-chip reveal reveal-d2"><div class="tool-chip-icon">🤗</div><div class="tool-chip-name">HuggingFace</div><div class="tool-chip-sub">Model hub</div></div>
+        <div class="tool-chip reveal reveal-d3"><div class="tool-chip-icon">🔁</div><div class="tool-chip-name">N8N</div><div class="tool-chip-sub">Automation</div></div>
+      </div>
+
+      <div class="inline-label reveal">Data &amp; analytics</div>
+      <div class="tools-grid">
+        <div class="tool-chip reveal"><div class="tool-chip-icon">📊</div><div class="tool-chip-name">Power BI</div><div class="tool-chip-sub">Dashboards</div></div>
+        <div class="tool-chip reveal reveal-d1"><div class="tool-chip-icon">🐼</div><div class="tool-chip-name">Pandas</div><div class="tool-chip-sub">Data wrangling</div></div>
+        <div class="tool-chip reveal reveal-d2"><div class="tool-chip-icon">🔢</div><div class="tool-chip-name">NumPy</div><div class="tool-chip-sub">Numerical computing</div></div>
+        <div class="tool-chip reveal reveal-d3"><div class="tool-chip-icon">📉</div><div class="tool-chip-name">RapidMiner</div><div class="tool-chip-sub">No-code ML</div></div>
+        <div class="tool-chip reveal"><div class="tool-chip-icon">🧪</div><div class="tool-chip-name">R Studio</div><div class="tool-chip-sub">Statistical computing</div></div>
+        <div class="tool-chip reveal reveal-d1"><div class="tool-chip-icon">🗺️</div><div class="tool-chip-name">Leaflet.js</div><div class="tool-chip-sub">Geospatial maps</div></div>
+        <div class="tool-chip reveal reveal-d2"><div class="tool-chip-icon">🌐</div><div class="tool-chip-name">PostGIS</div><div class="tool-chip-sub">Spatial DB</div></div>
+        <div class="tool-chip reveal reveal-d3"><div class="tool-chip-icon">📦</div><div class="tool-chip-name">FAISS</div><div class="tool-chip-sub">Vector search</div></div>
+      </div>
+
+      <div class="inline-label reveal">Design &amp; creative</div>
+      <div class="tools-grid">
+        <div class="tool-chip reveal"><div class="tool-chip-icon">🎨</div><div class="tool-chip-name">Canva</div><div class="tool-chip-sub">Graphic design</div></div>
+        <div class="tool-chip reveal reveal-d1"><div class="tool-chip-icon">🖼️</div><div class="tool-chip-name">Wix Studio</div><div class="tool-chip-sub">Web builder</div></div>
+        <div class="tool-chip reveal reveal-d2"><div class="tool-chip-icon">📱</div><div class="tool-chip-name">Social Media</div><div class="tool-chip-sub">Content strategy</div></div>
+        <div class="tool-chip reveal reveal-d3"><div class="tool-chip-icon">👕</div><div class="tool-chip-name">Merchandise</div><div class="tool-chip-sub">Print design</div></div>
+      </div>
+    </div>
+
+    <!-- ── TAB: CS CONCEPTS ── -->
+    <div class="tab-panel" id="tab-concepts">
+
+      <div class="inline-label reveal">Core CS subjects</div>
+      <div class="concepts-cloud reveal">
+        <span class="concept-chip">Data Structures &amp; Algorithms</span>
+        <span class="concept-chip">Object-Oriented Programming</span>
+        <span class="concept-chip">Database Management Systems</span>
+        <span class="concept-chip">Operating Systems</span>
+        <span class="concept-chip">Computer Networks</span>
+        <span class="concept-chip">Software Engineering</span>
+        <span class="concept-chip">Theory of Computation</span>
+        <span class="concept-chip">Compiler Design</span>
+        <span class="concept-chip">Discrete Mathematics</span>
+        <span class="concept-chip">Linear Algebra</span>
+        <span class="concept-chip">Probability &amp; Statistics</span>
+        <span class="concept-chip">Computer Architecture</span>
+      </div>
+
+      <div class="inline-label reveal">AI / ML / Data Science</div>
+      <div class="concepts-cloud reveal">
+        <span class="concept-chip">Natural Language Processing</span>
+        <span class="concept-chip">Machine Learning</span>
+        <span class="concept-chip">Reinforcement Learning</span>
+        <span class="concept-chip">Deep Learning fundamentals</span>
+        <span class="concept-chip">Statistical Analysis</span>
+        <span class="concept-chip">Feature Engineering</span>
+        <span class="concept-chip">Vector Embeddings</span>
+        <span class="concept-chip">Semantic Search</span>
+        <span class="concept-chip">Data Pipelines</span>
+        <span class="concept-chip">Stream Processing</span>
+        <span class="concept-chip">ETL &amp; ELT</span>
+        <span class="concept-chip">Exploratory Data Analysis</span>
+        <span class="concept-chip">Model Evaluation &amp; Metrics</span>
+        <span class="concept-chip">Text Classification</span>
+        <span class="concept-chip">Named Entity Recognition</span>
+        <span class="concept-chip">Reward Shaping</span>
+      </div>
+
+      <div class="inline-label reveal">Engineering &amp; system design</div>
+      <div class="concepts-cloud reveal">
+        <span class="concept-chip">REST API Design</span>
+        <span class="concept-chip">Microservices architecture</span>
+        <span class="concept-chip">Event-driven architecture</span>
+        <span class="concept-chip">Distributed systems fundamentals</span>
+        <span class="concept-chip">Containerisation &amp; Docker</span>
+        <span class="concept-chip">CI/CD basics</span>
+        <span class="concept-chip">Geospatial data modelling</span>
+        <span class="concept-chip">Responsive web design</span>
+        <span class="concept-chip">Accessibility (WCAG)</span>
+        <span class="concept-chip">API rate limiting &amp; pagination</span>
+      </div>
+
+      <div class="inline-label reveal">Soft skills &amp; communication</div>
+      <div class="concepts-cloud reveal">
+        <span class="concept-chip">Technical writing</span>
+        <span class="concept-chip">Stakeholder communication</span>
+        <span class="concept-chip">Event anchoring &amp; public speaking</span>
+        <span class="concept-chip">Team leadership</span>
+        <span class="concept-chip">Creative direction</span>
+        <span class="concept-chip">Visual storytelling</span>
+        <span class="concept-chip">Community management</span>
+        <span class="concept-chip">Time management</span>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span class="footer-logo">Hemakshi Yeole</span>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="certifications.html">Certifications</a></li>
+    </ul>
+    <span class="footer-copy">Crafted with care · 2024</span>
   </div>
 </footer>
 
 <script src="../js/main.js"></script>
+<script>
+  initAll({
+    tabs: true,
+    onTabSwitch: function() {
+      // Re-run skill bars and reveals each time a tab is opened
+      setTimeout(function() {
+        initSkillBars();
+        document.querySelectorAll('.skill-row, .reveal, .tool-chip, .learning-card').forEach(el => {
+          // Re-observe newly visible elements
+          if (el.closest('.tab-panel.active')) {
+            el.classList.add('visible');
+            const bar = el.querySelector('.skill-bar');
+            if (bar && el.dataset.pct) bar.style.width = el.dataset.pct + '%';
+          }
+        });
+      }, 80);
+    },
+    modal: false,
+    faq: false,
+    projectFilter: false,
+    contactForm: false
+  });
+</script>
+  <!-- theme toggle -->
+  <div class="bg-blobs" aria-hidden="true"><div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div></div>
+  <button id="theme-toggle" aria-label="Toggle dark / light mode" title="Toggle dark / light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+
 </body>
 </html>

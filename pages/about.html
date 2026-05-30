@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About — Hemakshi Yeole</title>
+<meta name="description" content="The full story of Hemakshi Yeole — who she is, how she thinks, and what she's building toward."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<style>
+/* HERO — white with subtle lavender tones */
+.page-hero { background:var(--surface-white); }
+.page-hero-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 75% 65% at 10% 30%, rgba(222,192,241,.25) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 65% at 92% 75%, rgba(170,156,237,.18) 0%, transparent 55%),
+    var(--surface-white);
+}
+.orb-a { width:400px;height:400px;top:-100px;right:-70px; background:radial-gradient(circle,var(--lilac),transparent);opacity:.45;animation-delay:0s }
+.orb-b { width:280px;height:280px;bottom:-20px;left:-50px; background:radial-gradient(circle,var(--lavender),transparent);opacity:.4;animation-delay:-4s }
+
+.page-body { padding:0 2rem 6rem; background:var(--surface-base); }
+.page-body-inner { max-width:1100px; margin:0 auto; }
+
+/* ── INTRO SPLIT ── */
+.intro-grid {
+  display:grid; grid-template-columns:1fr 1.05fr;
+  gap:5rem; align-items:start;
+  padding-top:4.5rem;
+}
+.intro-visual { position:relative; }
+.intro-avatar-wrap {
+  width:100%; aspect-ratio:1;
+  max-width:380px;
+  border-radius:30px;
+  background:linear-gradient(145deg, var(--lavender), var(--mauve), var(--periwinkle));
+  padding:4px;
+  box-shadow:var(--shadow-xl);
+}
+.intro-avatar-inner {
+  width:100%; height:100%;
+  border-radius:inherit;
+  background:var(--fog);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:6rem; position:relative;
+}
+.intro-avatar-inner::after {
+  content:'HY';
+  background:linear-gradient(135deg,var(--plum),var(--periwinkle));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.intro-float-badge {
+  position:absolute; padding:.5rem 1.1rem;
+  background:var(--surface-white); border-radius:50px;
+  font-size:.8125rem; font-weight:600; color:var(--deep);
+  box-shadow:var(--shadow-md); white-space:nowrap;
+  border:1px solid var(--lavender);
+}
+.badge-1 { top:-16px; left:-16px; }
+.badge-2 { bottom:-16px; right:-16px; }
+.badge-3 { bottom:30%; left:-24px; }
+
+/* ── PROSE SECTIONS ── */
+.about-prose { max-width:720px; }
+.prose-heading {
+  font-family:var(--font-display);
+  font-size:clamp(1.625rem,3vw,2.25rem);
+  color:var(--ink); line-height:1.2;
+  margin-bottom:1.25rem; letter-spacing:-.01em;
+}
+.prose-heading em { font-style:italic; color:var(--plum); }
+.prose-body {
+  font-size:1.0625rem; color:var(--text-secondary);
+  line-height:1.85; margin-bottom:1.25rem;
+}
+.prose-body strong { color:var(--deep); font-weight:600; }
+.prose-body a { color:var(--plum); text-decoration:none; font-weight:500; }
+.prose-body a:hover { text-decoration:underline; }
+
+/* ── PULL QUOTE ── */
+.pull-quote {
+  border-left:3px solid var(--plum);
+  padding:1rem 1.5rem;
+  margin:2rem 0;
+  background:var(--fog);
+  border-radius:0 14px 14px 0;
+}
+.pull-quote p {
+  font-family:var(--font-display);
+  font-size:1.25rem; color:var(--ink); line-height:1.55;
+  font-style:italic;
+}
+
+/* ── VALUES GRID ── */
+.values-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:1.1rem; margin-top:2rem;
+}
+.value-card {
+  background:var(--surface-white); border-radius:18px;
+  border:1px solid var(--border-soft); padding:1.5rem 1.35rem;
+  transition:transform .3s var(--ease-bounce), box-shadow .25s, border-color .2s;
+}
+.value-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); border-color:var(--mauve); }
+.value-emoji  { font-size:1.875rem; margin-bottom:.6rem; }
+.value-title  { font-weight:600; color:var(--deep); font-size:.9375rem; margin-bottom:.35rem; }
+.value-desc   { font-size:.8375rem; color:var(--text-muted); line-height:1.65; }
+
+/* ── BEYOND CODE CHIPS ── */
+.beyond-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:1rem; margin-top:1.75rem;
+}
+.beyond-card {
+  background:var(--surface-white); border-radius:16px;
+  border:1px solid var(--border-soft); padding:1.25rem;
+  display:flex; flex-direction:column; gap:.5rem;
+  transition:transform .25s var(--ease-bounce), box-shadow .25s;
+}
+.beyond-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); border-color:var(--mauve); }
+.beyond-icon  { font-size:1.625rem; }
+.beyond-title { font-weight:600; color:var(--deep); font-size:.875rem; }
+.beyond-desc  { font-size:.8rem; color:var(--text-muted); line-height:1.6; }
+
+/* ── DIVIDER PROSE ── */
+.section-prose { padding:4.5rem 0; border-top:1px solid var(--border-soft); }
+.section-prose:first-child { border-top:none; }
+
+/* ── LANGUAGES ── */
+.languages-row { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.25rem; }
+.lang-pill {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:var(--surface-white); border:1px solid var(--border-soft);
+  border-radius:50px; padding:.45rem 1.1rem;
+  font-size:.875rem; font-weight:500; color:var(--text-secondary);
+  transition:all .2s;
+}
+.lang-pill:hover { border-color:var(--plum); color:var(--plum); background:var(--fog); }
+
+/* ── FAQ ── */
+.faq-wrap { max-width:680px; margin-top:2rem; }
+
+/* ── CTA STRIP ── */
+.cta-strip {
+  background:linear-gradient(135deg, var(--deep), #3a2855);
+  border-radius:24px; padding:3rem 2.5rem;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:2rem; flex-wrap:wrap; margin-top:4rem;
+}
+.cta-strip-text h3 { font-family:var(--font-display); font-size:1.875rem; color:#fff; margin-bottom:.5rem; }
+.cta-strip-text p  { font-size:1rem; color:rgba(255,255,255,.65); line-height:1.7; max-width:460px; }
+.cta-strip-btns    { display:flex; gap:.875rem; flex-wrap:wrap; flex-shrink:0; }
+.btn-light {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:#fff; color:var(--deep);
+  padding:.7rem 1.75rem; border-radius:50px;
+  font-family:var(--font-body); font-size:.9375rem; font-weight:600;
+  text-decoration:none; border:none; cursor:pointer;
+  transition:transform .2s var(--ease-bounce), box-shadow .3s;
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
+}
+.btn-light:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 8px 28px rgba(0,0,0,.2); }
+.btn-outline-light {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:transparent; color:rgba(255,255,255,.85);
+  padding:.7rem 1.75rem; border-radius:50px;
+  font-family:var(--font-body); font-size:.9375rem; font-weight:500;
+  text-decoration:none; border:1.5px solid rgba(255,255,255,.3); cursor:pointer;
+  transition:all .2s var(--ease-out);
+}
+.btn-outline-light:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.6); }
+
+/* inline-label */
+.inline-label {
+  font-size:.75rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--plum); font-weight:600;
+  display:flex; align-items:center; gap:.5rem;
+  margin-bottom:1.25rem; margin-top:3rem;
+}
+.inline-label::before { content:''; width:20px; height:1.5px; background:var(--plum); }
+
+@media(max-width:900px) {
+  .intro-grid    { grid-template-columns:1fr; gap:3rem; }
+  .intro-visual  { max-width:280px; }
+  .cta-strip     { flex-direction:column; text-align:center; }
+  .cta-strip-btns { justify-content:center; }
+}
+@media(max-width:600px) {
+  .intro-visual   { display:none; }
+  .values-grid    { grid-template-columns:1fr 1fr; }
+  .beyond-grid    { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div id="cursor-glow"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-logo">HY</a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero" style="position:relative;overflow:hidden">
+  <div class="page-hero-bg"></div>
+  <div class="hero-orb orb-a"></div>
+  <div class="hero-orb orb-b"></div>
+  <div class="page-hero-inner">
+    <div class="page-breadcrumb">
+      <a href="../index.html">Home</a><span class="sep"> › </span><span class="current">About</span>
+    </div>
+    <h1 class="page-hero-title">The person behind<br/>the <em>code</em></h1>
+    <p class="page-hero-subtitle">This isn't a resume. It's the story of how a curious person from Nagpur started building things that matter — and where she's headed.</p>
+  </div>
+</div>
+
+<!-- BODY -->
+<main class="page-body">
+  <div class="page-body-inner">
+
+    <!-- ── INTRO SPLIT ── -->
+    <div class="intro-grid">
+      <div class="about-prose">
+
+        <div class="section-prose" style="padding-top:0;border-top:none">
+          <h2 class="prose-heading reveal">Hi, I'm <em>Hemakshi.</em></h2>
+          <p class="prose-body reveal">
+            I'm a third-year undergraduate studying Computer Science and Data Science at <strong>RCOEM, Nagpur</strong>. I'm the kind of person who gets genuinely excited when a messy dataset starts to tell a story — or when a rough idea becomes a system that actually works.
+          </p>
+          <p class="prose-body reveal">
+            Engineering, for me, has never been just about writing code. It's about asking the right question first. What's actually broken here? Who uses this? What would make it feel obvious? I carry those questions into every project I touch — whether it's a Kafka pipeline processing live financial data or an accessible e-learning platform for a community that most engineers don't think about.
+          </p>
+
+          <div class="pull-quote reveal">
+            <p>"I want to build things that matter — not just things that work."</p>
+          </div>
+
+          <p class="prose-body reveal">
+            Technically, I'm strongest in <strong>Python, NLP, and data engineering</strong>. I've shipped real systems: a streaming sentiment analysis pipeline, a legal case similarity engine using sentence transformers and FAISS, a full-stack drone mission planner with PostGIS spatial queries, and an RL environment where an LLM acts as an emergency incident commander. Not toy projects — real, running systems with real technical decisions behind them.
+          </p>
+        </div>
+
+        <div class="section-prose">
+          <h2 class="prose-heading reveal">I'm not only a <em>developer.</em></h2>
+          <p class="prose-body reveal">
+            In parallel to shipping code, I've been the <strong>Director of Creatives</strong> for Rotaract Club RBU — leading a team responsible for all visual communication, social media, merchandise, and event branding. I design T-shirts, banners, and social campaigns that actually get engagement, not just views.
+          </p>
+          <p class="prose-body reveal">
+            I've also served as an <strong>NSS Executive</strong>, coordinating community outreach programs across Nagpur, and I've anchored campus events in front of large audiences. I mention all of this not to pad a CV — but because I believe the best engineers are also great communicators, and I've deliberately invested in that side of things.
+          </p>
+          <p class="prose-body reveal">
+            I speak <strong>English, Hindi, and Marathi</strong> fluently. I can write clearly, present confidently, and explain a technical decision to a non-technical audience without being condescending about it.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Visual side -->
+      <div class="intro-visual reveal reveal-d2" style="position:sticky;top:8rem">
+        <div class="intro-avatar-wrap">
+          <div class="intro-avatar-inner"></div>
+        </div>
+        <div class="intro-float-badge badge-1">🎓 CGPA 9.26</div>
+        <div class="intro-float-badge badge-2">📍 Nagpur, India</div>
+        <div class="intro-float-badge badge-3">⚡ Open to internships</div>
+      </div>
+    </div>
+
+    <!-- ── VALUES ── -->
+    <div class="section-prose">
+      <h2 class="prose-heading reveal">What I believe <em>in</em></h2>
+      <p class="prose-body reveal" style="max-width:640px">
+        These aren't values I picked off a list. They're things I've noticed showing up consistently in how I approach work.
+      </p>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-emoji">🔍</div>
+          <div class="value-title">Curiosity over comfort</div>
+          <div class="value-desc">I pick up tools I don't know yet, break them, and figure out why. The uncomfortable problem is almost always the interesting one.</div>
+        </div>
+        <div class="value-card reveal reveal-d1">
+          <div class="value-emoji">🛠️</div>
+          <div class="value-title">Shipping over perfecting</div>
+          <div class="value-desc">A working system teaches you more than a perfect design doc. I'd rather build v0.1 and iterate than wait for the right moment.</div>
+        </div>
+        <div class="value-card reveal reveal-d2">
+          <div class="value-emoji">🧩</div>
+          <div class="value-title">Clarity in complexity</div>
+          <div class="value-desc">Good engineering is making hard things simple to reason about. I care about architecture that future-me (or a teammate) can understand.</div>
+        </div>
+        <div class="value-card reveal reveal-d3">
+          <div class="value-emoji">🤝</div>
+          <div class="value-title">Empathy in design</div>
+          <div class="value-desc">Systems are used by humans. I think about who's on the other end of every API, every UI, every decision.</div>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-emoji">📣</div>
+          <div class="value-title">Communication as craft</div>
+          <div class="value-desc">Technical skill without communication is half a skill. I invest in writing, presenting, and explaining well.</div>
+        </div>
+        <div class="value-card reveal reveal-d1">
+          <div class="value-emoji">🌱</div>
+          <div class="value-title">Compounding effort</div>
+          <div class="value-desc">CGPA 9.26 across five semesters while shipping projects and leading teams isn't luck — it's what consistency looks like over time.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BEYOND CODE ── -->
+    <div class="section-prose">
+      <h2 class="prose-heading reveal">Beyond the <em>terminal</em></h2>
+      <p class="prose-body reveal" style="max-width:640px">
+        The things that don't fit in a tech stack but say more about who I am.
+      </p>
+      <div class="beyond-grid">
+        <div class="beyond-card reveal">
+          <div class="beyond-icon">🎨</div>
+          <div class="beyond-title">Visual design</div>
+          <div class="beyond-desc">Canva, Wix Studio, print layouts — I care about how things look, not just how they work.</div>
+        </div>
+        <div class="beyond-card reveal reveal-d1">
+          <div class="beyond-icon">🎤</div>
+          <div class="beyond-title">Stage presence</div>
+          <div class="beyond-desc">Anchored Independence Day celebrations and major campus events. I like the energy of a live audience.</div>
+        </div>
+        <div class="beyond-card reveal reveal-d2">
+          <div class="beyond-icon">👕</div>
+          <div class="beyond-title">Merchandise design</div>
+          <div class="beyond-desc">T-shirts, badges, prints for Rotaract Club RBU — physical objects that carry a brand.</div>
+        </div>
+        <div class="beyond-card reveal reveal-d3">
+          <div class="beyond-icon">🌱</div>
+          <div class="beyond-title">Community work</div>
+          <div class="beyond-desc">NSS Executive — coordinating outreach programs and building things for the community, not just for a grade.</div>
+        </div>
+        <div class="beyond-card reveal">
+          <div class="beyond-icon">📖</div>
+          <div class="beyond-title">Multilingual</div>
+          <div class="beyond-desc">English, Hindi, Marathi — fluent in all three. Language shapes how you think about problems.</div>
+        </div>
+        <div class="beyond-card reveal reveal-d1">
+          <div class="beyond-icon">💡</div>
+          <div class="beyond-title">Constant learner</div>
+          <div class="beyond-desc">Currently going deep on LLM fine-tuning, Kubernetes, and dbt. Always have a tab open with something I don't fully understand yet.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── LANGUAGES ── -->
+    <div class="section-prose">
+      <h2 class="prose-heading reveal">Languages I <em>speak</em></h2>
+      <div class="languages-row reveal">
+        <span class="lang-pill">🌐 English — Fluent</span>
+        <span class="lang-pill">🗣️ Hindi — Native</span>
+        <span class="lang-pill">📖 Marathi — Native</span>
+      </div>
+    </div>
+
+    <!-- ── FAQ ── -->
+    <div class="section-prose">
+      <h2 class="prose-heading reveal">Things people <em>ask</em></h2>
+      <div class="faq-wrap">
+
+        <div class="faq-item reveal">
+          <div class="faq-q">What kind of roles are you looking for? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Data science, ML engineering, full-stack development, or any interesting intersection of those. I'm drawn to roles where I can own something end-to-end — from data ingestion to a working interface. Open to remote and Nagpur/nearby positions.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-q">What makes you different from other CS students? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">I ship things. Most of my projects are running systems, not just Jupyter notebooks. I also invest heavily in communication — writing, presenting, leading — which most engineers treat as optional. And I genuinely enjoy the design side of building, not just the logic.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-q">What's something you're proud of technically? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">The ICDE project — building an OpenAI Gym-compliant RL environment where an LLM acts as an emergency incident commander under FEMA/ICS guidelines. It required understanding RL theory, LLM inference architecture, containerisation, and the FEMA framework all at once. It was genuinely hard and it works.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-q">How do you manage academics, projects, and extracurriculars? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Honestly, by treating them as mutually reinforcing rather than competing. Projects make coursework concrete. Leadership makes communication stronger. There's no secret — just consistent effort and being deliberate about what I take on.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-q">Are you open to relocating? <span class="faq-toggle">+</span></div>
+          <div class="faq-a">Yes, for the right opportunity. I'm open to relocation within India and to remote roles globally. Happy to discuss specifics over email.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── CTA STRIP ── -->
+    <div class="cta-strip reveal">
+      <div class="cta-strip-text">
+        <h3>Let's work together</h3>
+        <p>If you're building something interesting — in data engineering, AI, full-stack, or anywhere in between — I'd genuinely like to hear about it.</p>
+      </div>
+      <div class="cta-strip-btns">
+        <a href="mailto:hemakshiyeole1@gmail.com" class="btn-light">📧 &nbsp;Email me</a>
+        <a href="https://linkedin.com/in/hemakshi-yeole" target="_blank" rel="noopener" class="btn-outline-light">LinkedIn ↗</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span class="footer-logo">Hemakshi Yeole</span>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="certifications.html">Certifications</a></li>
+    </ul>
+    <span class="footer-copy">Crafted with care · 2024</span>
+  </div>
+</footer>
+
+<!-- theme toggle -->
+  <div class="bg-blobs" aria-hidden="true"><div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div></div>
+  <button id="theme-toggle" aria-label="Toggle dark / light mode" title="Toggle dark / light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+
+<script src="../js/main.js"></script>
+<script>
+  initAll({ modal:false, tabs:false, projectFilter:false, contactForm:false, faq:true });
+</script>
+</body>
+</html>

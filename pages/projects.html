@@ -4,317 +4,281 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Projects — Hemakshi Yeole</title>
+<meta name="description" content="All projects by Hemakshi Yeole — NLP, AI, full-stack, and data engineering systems."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../css/style.css"/>
 <style>
-/* ---- FILTER ---- */
-.filter-bar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:40px; }
-.filter-btn {
-  padding:7px 16px; border-radius:20px; font-size:12px; font-weight:500; cursor:pointer;
-  border:1px solid var(--border); background:transparent; color:var(--text2);
-  transition:all 0.2s; font-family:var(--fb);
+.page-hero { background:#fff; }
+.page-hero-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 70% 80% at 5% 50%,  rgba(222,192,241,.22) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 60% at 95% 20%, rgba(170,156,237,.18) 0%,transparent 55%),
+    #fff;
 }
-.filter-btn:hover, .filter-btn.active {
-  border-color:var(--accent); color:var(--text); background:rgba(108,99,255,0.15);
-}
+.orb-a{width:350px;height:350px;top:-80px;right:-60px;background:radial-gradient(circle,var(--lilac),transparent);opacity:.45;animation-delay:0s}
+.orb-b{width:250px;height:250px;bottom:0;left:-40px;background:radial-gradient(circle,var(--lavender),transparent);opacity:.4;animation-delay:-4s}
 
-/* ---- GRID ---- */
-.projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:20px; }
-.proj-card {
-  padding:26px; display:flex; flex-direction:column; gap:12px;
-  position:relative; overflow:hidden; transition:opacity 0.3s, transform 0.3s;
-}
-.proj-card.hidden { opacity:0; pointer-events:none; transform:scale(0.97); display:none; }
-.proj-card::before {
-  content:''; position:absolute; top:0;left:0;right:0; height:2px;
-  background:linear-gradient(90deg,var(--accent),var(--accent3)); opacity:0; transition:opacity 0.3s;
-}
-.proj-card:hover::before { opacity:1; }
-.proj-num { font-size:11px; font-weight:700; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; }
-.proj-title { font-family:var(--fd); font-size:17px; font-weight:700; color:var(--text); line-height:1.3; }
-.proj-desc { font-size:13px; color:var(--text2); line-height:1.7; flex:1; }
-.proj-bullets { list-style:none; display:flex; flex-direction:column; gap:5px; }
-.proj-bullets li { font-size:12px; color:var(--text3); padding-left:14px; position:relative; line-height:1.5; }
-.proj-bullets li::before { content:'→'; position:absolute; left:0; color:var(--accent); font-size:10px; top:1px; }
-.proj-tags { display:flex; flex-wrap:wrap; gap:6px; }
-.proj-link {
-  display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:500;
-  color:var(--text2); text-decoration:none; padding:6px 14px;
-  border:1px solid var(--border); border-radius:8px; transition:all 0.2s; width:fit-content;
-}
-.proj-link:hover { color:var(--accent2); border-color:var(--accent); background:rgba(108,99,255,0.1); }
-.status-badge {
-  display:inline-block; padding:2px 10px; border-radius:20px; font-size:10px; font-weight:600;
-  width:fit-content;
-}
-.status-done { background:rgba(52,211,153,0.1); color:var(--green); border:1px solid rgba(52,211,153,0.25); }
-.status-wip  { background:rgba(251,191,36,0.1);  color:var(--amber); border:1px solid rgba(251,191,36,0.25); }
+.page-body { padding:4rem 2rem 6rem; background:var(--surface-base); }
+.page-body-inner { max-width:1100px; margin:0 auto; }
 
-/* coming soon card */
-.proj-card.coming-soon { border-style:dashed; opacity:0.5; }
-.proj-card.coming-soon:hover { opacity:0.7; transform:none; box-shadow:none; }
+.projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1.75rem; }
 
-@media (max-width:768px) { .projects-grid { grid-template-columns:1fr; } }
+/* modal */
+#modal-overlay { position:fixed;inset:0;background:rgba(45,31,66,.65);backdrop-filter:blur(8px);z-index:5000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s }
+#modal-overlay.open { opacity:1;pointer-events:all }
+#modal-box { background:#fff;border-radius:24px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px) scale(.97);transition:transform .35s var(--ease-bounce) }
+#modal-overlay.open #modal-box { transform:none }
+
+@media(max-width:1024px){ .project-card.featured{grid-template-columns:1fr;grid-column:auto} .project-card.featured .project-thumb{height:200px;min-height:unset} }
+@media(max-width:600px){ .projects-grid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
 <div id="progress-bar"></div>
-<div class="bg-blobs" aria-hidden="true">
-  <div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div>
-</div>
+<div id="cursor-glow"></div>
 
-<nav>
+<nav class="navbar" id="navbar">
   <a href="../index.html" class="nav-logo">HY</a>
-  <a href="../index.html#about">About</a>
-  <a href="projects.html" class="active">Projects</a>
-  <a href="skills.html">Skills</a>
-  <a href="certifications.html">Certifications</a>
-  <a href="../index.html#contact">Contact</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<div class="wrapper">
-  <div class="page-hero">
-    <a href="../index.html" class="back-link">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-      Back home
-    </a>
-    <h1>All <span>Projects</span></h1>
-    <p>Real-world systems across data engineering, NLP, ML, geospatial, and full-stack. More being added regularly.</p>
+<!-- HERO -->
+<div class="page-hero" style="position:relative;overflow:hidden">
+  <div class="page-hero-bg"></div>
+  <div class="hero-orb orb-a"></div>
+  <div class="hero-orb orb-b"></div>
+  <div class="page-hero-inner">
+    <div class="page-breadcrumb">
+      <a href="../index.html">Home</a><span class="sep"> › </span><span class="current">Projects</span>
+    </div>
+    <h1 class="page-hero-title">Things I've <em>built</em></h1>
+    <p class="page-hero-subtitle">Real systems for real problems. Every project here started with curiosity, pushed through frustration, and landed somewhere I'm proud of.</p>
+    <div class="page-hero-meta" style="opacity:0;animation:slide-up .7s var(--ease-out) .5s forwards">
+      <div class="page-hero-meta-item"><div class="num">7</div><div class="lbl">Projects built</div></div>
+      <div class="page-hero-meta-item"><div class="num">3</div><div class="lbl">Domains covered</div></div>
+      <div class="page-hero-meta-item"><div class="num">15+</div><div class="lbl">Technologies used</div></div>
+    </div>
   </div>
-
-  <!-- FILTER -->
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="streaming">Streaming</button>
-    <button class="filter-btn" data-filter="nlp">NLP</button>
-    <button class="filter-btn" data-filter="ml">ML / RL</button>
-    <button class="filter-btn" data-filter="fullstack">Full Stack</button>
-    <button class="filter-btn" data-filter="bi">Analytics / BI</button>
-  </div>
-
-  <div class="projects-grid">
-
-    <!-- 01 ICDE -->
-    <div class="glass proj-card reveal" data-cat="ml">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div class="proj-num">01 — Featured</div>
-        <span class="status-badge status-done">Completed</span>
-      </div>
-      <div class="proj-title">ICDE — Incident Command Decision Environment</div>
-      <p class="proj-desc">Reinforcement learning environment where an LLM agent acts as an Emergency Incident Commander under FEMA/ICS framework.</p>
-      <ul class="proj-bullets">
-        <li>Multi-level tasks with dense reward shaping across prioritisation, resource efficiency, and temporal reasoning</li>
-        <li>OpenEnv-compliant environment with deterministic grading and LLM inference pipeline</li>
-        <li>Containerised deployment for scalable agent evaluation</li>
-      </ul>
-      <div class="proj-tags">
-        <span class="tag">Reinforcement Learning</span>
-        <span class="tag blue">LLM Agents</span>
-        <span class="tag green">Docker</span>
-        <span class="tag amber">FEMA/ICS</span>
-      </div>
-      <a href="https://github.com/hemakshiyeole01" target="_blank" class="proj-link">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-    </div>
-
-    <!-- 02 SENTIMENT -->
-    <div class="glass proj-card reveal reveal-delay-1" data-cat="streaming nlp">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div class="proj-num">02</div>
-        <span class="status-badge status-done">Completed</span>
-      </div>
-      <div class="proj-title">Real-Time Sentiment Analysis Pipeline</div>
-      <p class="proj-desc">End-to-end Kafka streaming pipeline that processes live textual data, classifies sentiment, and visualises trends on a dashboard.</p>
-      <ul class="proj-bullets">
-        <li>Kafka producers/consumers for live ingestion and keyword extraction</li>
-        <li>Stored results for efficient time-series querying of sentiment trends</li>
-        <li>Interactive dashboards monitoring real-time sentiment fluctuations</li>
-      </ul>
-      <div class="proj-tags">
-        <span class="tag">Kafka</span>
-        <span class="tag blue">NLP</span>
-        <span class="tag green">Python</span>
-        <span class="tag amber">Dashboard</span>
-      </div>
-      <a href="https://github.com/hemakshiyeole01" target="_blank" class="proj-link">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-    </div>
-
-    <!-- 03 LEGAL NLP -->
-    <div class="glass proj-card reveal reveal-delay-2" data-cat="nlp">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div class="proj-num">03</div>
-        <span class="status-badge status-done">Completed</span>
-      </div>
-      <div class="proj-title">Intelligent Legal Case Similarity & Analytics</div>
-      <p class="proj-desc">NLP system that retrieves semantically similar legal cases and provides year-wise analytics on case distribution and legal terminology.</p>
-      <ul class="proj-bullets">
-        <li>Tokenisation, stopword removal, and lemmatisation for standardised legal text</li>
-        <li>Vector embeddings to compute similarity scores and rank relevant cases</li>
-        <li>Year-wise case distribution and frequently occurring legal term visualisation</li>
-      </ul>
-      <div class="proj-tags">
-        <span class="tag">NLP</span>
-        <span class="tag blue">Vector Embeddings</span>
-        <span class="tag green">Python</span>
-        <span class="tag amber">Legal Tech</span>
-      </div>
-      <a href="https://github.com/hemakshiyeole01" target="_blank" class="proj-link">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-    </div>
-
-    <!-- 04 DRONE -->
-    <div class="glass proj-card reveal" data-cat="fullstack">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div class="proj-num">04</div>
-        <span class="status-badge status-done">Completed</span>
-      </div>
-      <div class="proj-title">Drone Mission Planning & Efficiency Analysis</div>
-      <p class="proj-desc">Full-stack decision support system for drone surveillance with automated route generation, geospatial visualisation, and mission analytics.</p>
-      <ul class="proj-bullets">
-        <li>Multiple path-planning algorithms optimising coverage, risk, and battery usage</li>
-        <li>Interactive geospatial visualisation with real-time environmental assessment</li>
-        <li>Simulation, analytics, and downloadable mission reports module</li>
-      </ul>
-      <div class="proj-tags">
-        <span class="tag">PostGIS</span>
-        <span class="tag blue">Geospatial</span>
-        <span class="tag green">Full Stack</span>
-        <span class="tag amber">Optimisation</span>
-      </div>
-      <a href="https://github.com/hemakshiyeole01" target="_blank" class="proj-link">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-    </div>
-
-    <!-- 05 CRYPTO -->
-    <div class="glass proj-card reveal reveal-delay-1" data-cat="streaming">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div class="proj-num">05</div>
-        <span class="status-badge status-done">Completed</span>
-      </div>
-      <div class="proj-title">Cryptocurrency Real-Time Data Pipeline</div>
-      <p class="proj-desc">Kafka-based streaming pipeline collecting live cryptocurrency market data from APIs for continuous trend analytics and monitoring.</p>
-      <ul class="proj-bullets">
-        <li>Kafka producers and consumers streaming high-frequency price updates</li>
-        <li>Scalable real-time processing with continuous data ingestion</li>
-        <li>Efficient storage and monitoring of crypto market trends</li>
-      </ul>
-      <div class="proj-tags">
-        <span class="tag">Kafka</span>
-        <span class="tag blue">Streaming</span>
-        <span class="tag green">Python</span>
-      </div>
-      <a href="https://github.com/hemakshiyeole01" target="_blank" class="proj-link">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-    </div>
-
-    <!-- 06 BOUNCE RATE -->
-    <div class="glass proj-card reveal reveal-delay-2" data-cat="bi">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div class="proj-num">06</div>
-        <span class="status-badge status-done">Completed</span>
-      </div>
-      <div class="proj-title">Website Bounce Rate & Engagement Analysis</div>
-      <p class="proj-desc">EDA on a 2,000+ session e-commerce dataset studying bounce rate patterns, with a predictive model and interactive Power BI dashboard.</p>
-      <ul class="proj-bullets">
-        <li>EDA on page visits, session duration, visitor type, and browsing behaviour</li>
-        <li>Predictive model estimating purchase probability from interaction features</li>
-        <li>Interactive Power BI dashboard with engagement trend insights</li>
-      </ul>
-      <div class="proj-tags">
-        <span class="tag">Python</span>
-        <span class="tag blue">Power BI</span>
-        <span class="tag green">EDA</span>
-        <span class="tag amber">Pandas</span>
-      </div>
-      <a href="https://github.com/hemakshiyeole01" target="_blank" class="proj-link">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-    </div>
-
-    <!-- 07 E-LEARNING -->
-    <div class="glass proj-card reveal" data-cat="fullstack">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div class="proj-num">07</div>
-        <span class="status-badge status-done">Completed</span>
-      </div>
-      <div class="proj-title">Inclusive E-Learning Platform</div>
-      <p class="proj-desc">Accessibility-first e-learning website with support for multiple learning needs — built with inclusive UX principles at its core.</p>
-      <ul class="proj-bullets">
-        <li>Designed for learners with diverse accessibility requirements</li>
-        <li>Clean, distraction-free UI with keyboard navigation and screen reader support</li>
-      </ul>
-      <div class="proj-tags">
-        <span class="tag">HTML/CSS</span>
-        <span class="tag blue">Accessibility</span>
-        <span class="tag green">UX Design</span>
-      </div>
-      <a href="https://github.com/hemakshiyeole01" target="_blank" class="proj-link">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-    </div>
-
-    <!-- COMING SOON placeholder -->
-    <div class="glass proj-card coming-soon">
-      <div class="proj-num">08 — Coming Soon</div>
-      <div class="proj-title">Next Project</div>
-      <p class="proj-desc">More projects being added. Check back or follow on GitHub.</p>
-      <a href="https://github.com/hemakshiyeole01" target="_blank" class="proj-link">Follow on GitHub</a>
-    </div>
-
-  </div>
-  <br/><br/>
 </div>
 
-<footer>
-  <div class="wrapper">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">Hemakshi Yeole</div>
-        <div class="footer-copy" style="margin-top:4px;">© 2026 · RCOEM Nagpur</div>
-      </div>
-      <div class="footer-links">
-        <a href="../index.html">Home</a>
-        <a href="skills.html">Skills</a>
-        <a href="certifications.html">Certifications</a>
-        <a href="../index.html#contact">Contact</a>
-      </div>
+<!-- BODY -->
+<main class="page-body">
+  <div class="page-body-inner">
+
+    <div class="filter-bar reveal">
+      <span class="filter-bar-label">Filter by</span>
+      <button class="filter-btn active" data-cat="all">All projects</button>
+      <button class="filter-btn" data-cat="ai">AI · NLP</button>
+      <button class="filter-btn" data-cat="data">Data Engineering</button>
+      <button class="filter-btn" data-cat="fullstack">Full-Stack</button>
     </div>
+
+    <div class="section-divider reveal">Featured work</div>
+
+    <div class="projects-grid" id="projects-grid">
+
+      <!-- FEATURED: ICDE -->
+      <article class="project-card featured reveal" data-cat="ai">
+        <div class="project-thumb" style="background:linear-gradient(150deg,#4A3560,#82659D)">
+          <div class="project-thumb-pattern"></div>
+          <div class="project-thumb-icon" style="color:#fff;font-size:5.5rem">🚨</div>
+        </div>
+        <div class="project-body">
+          <span class="featured-badge">★ Featured</span>
+          <div class="project-top"><span class="project-cat">AI · Reinforcement Learning · LLM</span><span class="project-year">2024</span></div>
+          <h2 class="project-title">ICDE — Incident Command Decision Environment</h2>
+          <p class="project-desc">A real-world RL environment where an LLM agent acts as an Emergency Incident Commander. Built to the FEMA/ICS framework with multi-level tasks, dense reward shaping, and containerised evaluation.</p>
+          <ul class="project-highlights">
+            <li>OpenAI Gym-compliant environment with deterministic grading</li>
+            <li>Reward shaping across prioritisation, resource efficiency &amp; temporal reasoning</li>
+            <li>Containerised LLM inference pipeline for scalable agent evaluation</li>
+          </ul>
+          <div class="project-stack">
+            <span class="stack-badge">Python</span><span class="stack-badge">OpenAI Gym</span><span class="stack-badge">LLM APIs</span><span class="stack-badge">Docker</span><span class="stack-badge">FEMA/ICS</span>
+          </div>
+          <div class="project-links">
+            <button class="project-link primary" onclick="openModal('icde')">View details →</button>
+            <a href="https://github.com/hemakshiyeole01" target="_blank" rel="noopener" class="project-link secondary">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- SENTIMENT -->
+      <article class="project-card reveal reveal-delay-1" data-cat="ai">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#DEC0F1,#AA9CED)"><div class="project-thumb-pattern"></div><div class="project-thumb-icon">🧠</div></div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-cat">AI · NLP · Streaming</span><span class="project-year">2024</span></div>
+          <h3 class="project-title">Real-Time Sentiment Analysis System</h3>
+          <p class="project-desc">Live streaming pipeline ingesting textual data, classifying sentiment, extracting keywords, and surfacing trends on an interactive dashboard—all in real time.</p>
+          <div class="project-stack"><span class="stack-badge">Kafka</span><span class="stack-badge">Python</span><span class="stack-badge">NLP</span><span class="stack-badge">PostgreSQL</span><span class="stack-badge">Power BI</span></div>
+          <div class="project-links">
+            <button class="project-link primary" onclick="openModal('sentiment')">View details →</button>
+            <a href="https://github.com/hemakshiyeole01" target="_blank" rel="noopener" class="project-link secondary">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- LEGAL -->
+      <article class="project-card reveal reveal-delay-2" data-cat="ai">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#B99CC8,#82659D)"><div class="project-thumb-pattern"></div><div class="project-thumb-icon" style="color:#fff">⚖️</div></div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-cat">AI · NLP · Analytics</span><span class="project-year">2024</span></div>
+          <h3 class="project-title">Intelligent Legal Case Similarity System</h3>
+          <p class="project-desc">NLP system that retrieves semantically similar legal cases using vector representations—preprocessing, similarity scoring, and year-wise legal analytics.</p>
+          <div class="project-stack"><span class="stack-badge">Python</span><span class="stack-badge">Transformers</span><span class="stack-badge">FAISS</span><span class="stack-badge">spaCy</span><span class="stack-badge">Pandas</span></div>
+          <div class="project-links">
+            <button class="project-link primary" onclick="openModal('legal')">View details →</button>
+            <a href="https://github.com/hemakshiyeole01" target="_blank" rel="noopener" class="project-link secondary">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- DRONE -->
+      <article class="project-card reveal" data-cat="fullstack">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#C5D5C0,#7B8DB0)"><div class="project-thumb-pattern"></div><div class="project-thumb-icon">🛸</div></div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-cat">Full-Stack · Geospatial</span><span class="project-year">2024</span></div>
+          <h3 class="project-title">Drone Mission Planning &amp; Efficiency System</h3>
+          <p class="project-desc">Full-stack decision-support system for drone surveillance with automated route generation, multi-algorithm optimisation, and interactive geospatial visualisation.</p>
+          <div class="project-stack"><span class="stack-badge">React</span><span class="stack-badge">FastAPI</span><span class="stack-badge">PostGIS</span><span class="stack-badge">Python</span><span class="stack-badge">Leaflet</span></div>
+          <div class="project-links">
+            <button class="project-link primary" onclick="openModal('drone')">View details →</button>
+            <a href="https://github.com/hemakshiyeole01" target="_blank" rel="noopener" class="project-link secondary">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- TWT -->
+      <article class="project-card reveal reveal-delay-1" data-cat="fullstack">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#E5D9F2,#AA9CED)"><div class="project-thumb-pattern"></div><div class="project-thumb-icon">📚</div></div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-cat">Full-Stack · EdTech · Accessibility</span><span class="project-year">2024</span></div>
+          <h3 class="project-title">Together We Teach</h3>
+          <p class="project-desc">Inclusive e-learning platform for parents and teachers of children with intellectual disabilities. Accessibility-first design, collaborative materials, structured content.</p>
+          <div class="project-stack"><span class="stack-badge">React</span><span class="stack-badge">HTML/CSS</span><span class="stack-badge">ARIA</span><span class="stack-badge">Accessibility</span></div>
+          <div class="project-links">
+            <button class="project-link primary" onclick="openModal('twt')">View details →</button>
+            <a href="https://github.com/hemakshiyeole01" target="_blank" rel="noopener" class="project-link secondary">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- CRYPTO -->
+      <article class="project-card reveal reveal-delay-2" data-cat="data">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#82659D,#4A3560)"><div class="project-thumb-pattern"></div><div class="project-thumb-icon" style="color:#fff">₿</div></div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-cat">Data Engineering · Streaming</span><span class="project-year">2024</span></div>
+          <h3 class="project-title">Cryptocurrency Real-Time Data Pipeline</h3>
+          <p class="project-desc">End-to-end Kafka pipeline streaming cryptocurrency market data. High-frequency price ingestion, processing, storage, and trend monitoring at scale.</p>
+          <div class="project-stack"><span class="stack-badge">Kafka</span><span class="stack-badge">Airflow</span><span class="stack-badge">Python</span><span class="stack-badge">PostgreSQL</span></div>
+          <div class="project-links">
+            <button class="project-link primary" onclick="openModal('crypto')">View details →</button>
+            <a href="https://github.com/hemakshiyeole01" target="_blank" rel="noopener" class="project-link secondary">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- BOUNCE -->
+      <article class="project-card reveal" data-cat="data">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#C5D5C0,#EBD8D0)"><div class="project-thumb-pattern"></div><div class="project-thumb-icon">📈</div></div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-cat">Data Analysis · ML</span><span class="project-year">2024</span></div>
+          <h3 class="project-title">Website Engagement &amp; Bounce Rate Analysis</h3>
+          <p class="project-desc">In-depth analysis of 2,000+ e-commerce sessions. Predictive model for purchase probability. Interactive dashboard surfacing engagement trends and bounce distribution.</p>
+          <div class="project-stack"><span class="stack-badge">Python</span><span class="stack-badge">Pandas</span><span class="stack-badge">Scikit-learn</span><span class="stack-badge">Plotly Dash</span></div>
+          <div class="project-links">
+            <button class="project-link primary" onclick="openModal('bounce')">View details →</button>
+            <a href="https://github.com/hemakshiyeole01" target="_blank" rel="noopener" class="project-link secondary">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<!-- MODAL -->
+<div id="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div id="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-thumb" id="modal-thumb">
+      <div class="project-thumb-pattern"></div>
+      <span id="modal-icon" style="font-size:5rem;z-index:1;position:relative"></span>
+    </div>
+    <div class="modal-body">
+      <div class="modal-cat"  id="modal-cat"></div>
+      <h2  class="modal-title" id="modal-title"></h2>
+      <p   class="modal-desc"  id="modal-desc"></p>
+      <div class="modal-section-lbl">Key highlights</div>
+      <ul  class="modal-highlights" id="modal-highlights"></ul>
+      <div class="modal-section-lbl">Tech stack</div>
+      <div class="modal-stack" id="modal-stack"></div>
+      <div class="modal-links" id="modal-links"></div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span class="footer-logo">Hemakshi Yeole</span>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="certifications.html">Certifications</a></li>
+    </ul>
+    <span class="footer-copy">Crafted with care · 2024</span>
   </div>
 </footer>
 
 <script src="../js/main.js"></script>
 <script>
-// FILTER
-const btns = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.proj-card:not(.coming-soon)');
-btns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    btns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.filter;
-    cards.forEach(card => {
-      const cats = card.dataset.cat || '';
-      if (f === 'all' || cats.includes(f)) {
-        card.style.display = '';
-        setTimeout(() => card.classList.remove('hidden'), 10);
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  });
-});
+const PROJECTS = {
+  icde:      { icon:'🚨', color:'linear-gradient(150deg,#4A3560,#82659D)', cat:'AI · Reinforcement Learning · LLM', title:'ICDE — Incident Command Decision Environment', desc:'A real-world RL environment where an LLM agent acts as an Emergency Incident Commander handling complex crisis scenarios. Built to the FEMA/ICS framework—the same system used by emergency services globally.', highlights:['OpenAI Gym-compliant environment with full deterministic grading','Multi-level tasks with dense reward shaping across prioritisation, resource efficiency, temporal reasoning, and situational awareness','Containerised LLM inference pipeline for scalable agent evaluation and training','Designed to benchmark real decision-making under uncertainty'], stack:['Python','OpenAI Gym','LLM APIs','Docker','FEMA/ICS','Reinforcement Learning'], github:'https://github.com/hemakshiyeole01' },
+  sentiment: { icon:'🧠', color:'linear-gradient(135deg,#DEC0F1,#AA9CED)', cat:'AI · NLP · Streaming', title:'Real-Time Sentiment Analysis System', desc:'A streaming pipeline that ingests live textual data, classifies sentiment, extracts keywords, and visualises trend patterns in real time—built for scale from day one.', highlights:['Kafka-based streaming architecture for high-throughput data ingestion','NLP preprocessing pipeline: tokenisation, stopword removal, lemmatisation','Keyword extraction and sentiment scoring stored in PostgreSQL for efficient querying','Interactive Power BI dashboard monitoring sentiment fluctuations over time'], stack:['Apache Kafka','Python','NLTK / spaCy','PostgreSQL','Power BI','FastAPI'], github:'https://github.com/hemakshiyeole01' },
+  legal:     { icon:'⚖️', color:'linear-gradient(135deg,#B99CC8,#82659D)', cat:'AI · NLP · Analytics', title:'Intelligent Legal Case Similarity System', desc:'An NLP-based legal analytics system that retrieves the most semantically similar legal cases using vector representations, helping lawyers and researchers surface relevant precedents faster.', highlights:['Tokenisation, stopword removal, and lemmatisation for standardised legal documents','Sentence-Transformers and FAISS for vector similarity search and case ranking','Year-wise case distribution analytics and frequently occurring legal term extraction','Supports legal research by surfacing meaningful case clusters and patterns'], stack:['Python','HuggingFace Transformers','FAISS','spaCy','Pandas','Matplotlib'], github:'https://github.com/hemakshiyeole01' },
+  drone:     { icon:'🛸', color:'linear-gradient(135deg,#C5D5C0,#7B8DB0)', cat:'Full-Stack · Geospatial · Optimisation', title:'Drone Mission Planning & Operational Efficiency System', desc:'An end-to-end decision-support system for drone surveillance and inspection mission planning. Multiple path-planning algorithms, geospatial visualisation, and downloadable mission reports.', highlights:['Automated route generation via multiple optimisation algorithms','Interactive geospatial map with real-time environmental assessment layer','Simulation and analytics modules with downloadable mission PDF reports','PostGIS spatial queries for terrain and obstacle analysis'], stack:['React','FastAPI','PostGIS','Python','Leaflet.js','Docker','SQLAlchemy'], github:'https://github.com/hemakshiyeole01' },
+  twt:       { icon:'📚', color:'linear-gradient(135deg,#E5D9F2,#AA9CED)', cat:'Full-Stack · EdTech · Accessibility', title:'Together We Teach — Inclusive E-Learning Platform', desc:'A web-based inclusive learning platform supporting parents and teachers educating children with intellectual disabilities. Designed with accessibility, structure, and collaboration as first principles.', highlights:['Accessible navigation built to WCAG 2.1 AA standards','Structured learning content modules with progress tracking','Interactive educational resources tailored for diverse learning styles','Shared resource library enabling collaboration between educators and caregivers'], stack:['React','HTML5','CSS3','ARIA Accessibility','JavaScript'], github:'https://github.com/hemakshiyeole01' },
+  crypto:    { icon:'₿',  color:'linear-gradient(135deg,#82659D,#4A3560)', cat:'Data Engineering · Streaming', title:'Cryptocurrency Real-Time Data Pipeline', desc:'An end-to-end Kafka data pipeline that collects, streams, and processes cryptocurrency market data from external APIs—designed for high-frequency ingestion and scalable analytics.', highlights:['Kafka producers and consumers for streaming high-frequency price updates','Apache Airflow DAGs orchestrating the ingestion and transformation pipeline','Processed data stored in PostgreSQL, optimised for time-series queries','Monitoring dashboards for price trend analysis and anomaly detection'], stack:['Apache Kafka','Apache Airflow','Python','PostgreSQL','CoinGecko API'], github:'https://github.com/hemakshiyeole01' },
+  bounce:    { icon:'📈', color:'linear-gradient(135deg,#C5D5C0,#EBD8D0)', cat:'Data Analysis · Machine Learning', title:'Website Engagement & Bounce Rate Analysis', desc:'In-depth analysis of over 2,000 e-commerce sessions to understand the relationship between bounce rate and user engagement—with a predictive ML model for purchase probability.', highlights:['Exploratory analysis of page visits, session duration, visitor type, and browsing behaviour','Feature engineering from raw session logs for ML pipeline','Scikit-learn classification model estimating purchase probability per session','Plotly Dash interactive dashboard visualising engagement trends and bounce distributions'], stack:['Python','Pandas','Scikit-learn','Plotly Dash','Seaborn','Jupyter'], github:'https://github.com/hemakshiyeole01' }
+};
+
+function openModal(id) {
+  const p = PROJECTS[id]; if (!p) return;
+  document.getElementById('modal-thumb').style.background = p.color;
+  document.getElementById('modal-icon').textContent  = p.icon;
+  document.getElementById('modal-cat').textContent   = p.cat;
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-desc').textContent  = p.desc;
+  document.getElementById('modal-highlights').innerHTML = p.highlights.map(h=>`<li>${h}</li>`).join('');
+  document.getElementById('modal-stack').innerHTML = p.stack.map(s=>`<span class="stack-badge">${s}</span>`).join('');
+  document.getElementById('modal-links').innerHTML = `<a href="${p.github}" target="_blank" rel="noopener" class="btn-primary">View on GitHub ↗</a>`;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+
+initAll({ modal:false, tabs:false, faq:false, contactForm:false, projectFilter:true, projectFilterGrid:'projects-grid' });
 </script>
+  <!-- theme toggle -->
+  <div class="bg-blobs" aria-hidden="true"><div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div></div>
+  <button id="theme-toggle" aria-label="Toggle dark / light mode" title="Toggle dark / light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+
 </body>
 </html>
