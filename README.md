@@ -34,7 +34,7 @@ portfolio/
 │   └── main.js                 ← All interactivity (shared across every page)
 └── pages/
     ├── about.html              ← Full story, values, FAQ, CTA strip
-    ├── projects.html           ← All 7 projects, filter bar, detail modals
+    ├── projects.html           ← All projects, filter bar, detail modals
     ├── skills.html             ← 4-tab layout: overview, proficiency, tools, concepts
     └── certifications.html     ← Certs, achievements timeline, hackathons, leadership
 ```
@@ -153,7 +153,7 @@ Remove the `.avatar-inner::after` rule from any page-specific `<style>` block.
 
 ### Update contact details
 
-Search for `hemakshiyeole1@gmail.com` and `+91 96990 19204` across all HTML files and replace with updated details. They appear in `index.html` and `pages/about.html` most prominently.
+Search for `hemakshiyeole1@gmail.com` across all HTML files and replace with updated details. They appear in `index.html` and `pages/about.html` most prominently.
 
 ---
 
