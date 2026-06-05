@@ -46,9 +46,14 @@
   background:var(--fog);
   display:flex; align-items:center; justify-content:center;
   font-family:var(--font-display); font-size:6rem; position:relative;
+  overflow:hidden;
+}
+.intro-avatar-inner img {
+  width:100%; height:100%;
+  object-fit:cover;
+  border-radius:inherit;
 }
 .intro-avatar-inner::after {
-  content:'HY';
   background:linear-gradient(135deg,var(--plum),var(--periwinkle));
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
 }
@@ -59,9 +64,9 @@
   box-shadow:var(--shadow-md); white-space:nowrap;
   border:1px solid var(--lavender);
 }
-.badge-1 { top:-16px; left:-16px; }
-.badge-2 { bottom:-16px; right:-16px; }
-.badge-3 { bottom:30%; left:-24px; }
+.badge-1 { top: 2px; left:-19px; }  
+.badge-2 { bottom:-10px; right:80px; }
+.badge-3 { bottom:20%; left:-24px; }
 
 /* ── PROSE SECTIONS ── */
 .about-prose { max-width:720px; }
@@ -220,7 +225,7 @@
       <a href="../index.html">Home</a><span class="sep"> › </span><span class="current">About</span>
     </div>
     <h1 class="page-hero-title">The person behind<br/>the <em>code</em></h1>
-    <p class="page-hero-subtitle">This isn't a resume. It's the story of how a curious person from Nagpur started building things that matter — and where she's headed.</p>
+    <p class="page-hero-subtitle">This isn't a resume. It's the story of how a curious person from Nagpur started building things that matter — and felt of her intrest.</p>
   </div>
 </div>
 
@@ -238,7 +243,7 @@
             I'm a third-year undergraduate studying Computer Science and Data Science at <strong>RCOEM, Nagpur</strong>. I'm the kind of person who gets genuinely excited when a messy dataset starts to tell a story — or when a rough idea becomes a system that actually works.
           </p>
           <p class="prose-body reveal">
-            Engineering, for me, has never been just about writing code. It's about asking the right question first. What's actually broken here? Who uses this? What would make it feel obvious? I carry those questions into every project I touch — whether it's a Kafka pipeline processing live financial data or an accessible e-learning platform for a community that most engineers don't think about.
+            Engineering, for me, has never been just about writing code. It's about asking the right question first. What's actually broken here? Who uses this? What would make it feel obvious? I carry those questions into every project I touch — whether it's a Kafka pipeline processing live financial data or an accessible e-learning platform for a community that most students don't think about.
           </p>
 
           <div class="pull-quote reveal">
@@ -246,7 +251,7 @@
           </div>
 
           <p class="prose-body reveal">
-            Technically, I'm strongest in <strong>Python, NLP, and data engineering</strong>. I've shipped real systems: a streaming sentiment analysis pipeline, a legal case similarity engine using sentence transformers and FAISS, a full-stack drone mission planner with PostGIS spatial queries, and an RL environment where an LLM acts as an emergency incident commander. Not toy projects — real, running systems with real technical decisions behind them.
+            Technically, I'm strongest in <strong>Java, NLP, and data engineering</strong>. I've shipped real systems: a streaming sentiment analysis pipeline, a legal case similarity engine using sentence transformers, a full-stack drone mission planner with PostGIS spatial queries, and an RL environment where an LLM acts as an emergency incident commander. Not toy projects — real, running systems with real technical decisions behind them.
           </p>
         </div>
 
@@ -268,9 +273,9 @@
       <!-- Visual side -->
       <div class="intro-visual reveal reveal-d2" style="position:sticky;top:8rem">
         <div class="intro-avatar-wrap">
-          <div class="intro-avatar-inner"></div>
+          <div class="intro-avatar-inner"><img src="../profilPic.jpeg"></div>
         </div>
-        <div class="intro-float-badge badge-1">🎓 CGPA 9.26</div>
+        <div class="intro-float-badge badge-1">🎓 CGPA 9.15</div>
         <div class="intro-float-badge badge-2">📍 Nagpur, India</div>
         <div class="intro-float-badge badge-3">⚡ Open to internships</div>
       </div>
@@ -311,7 +316,7 @@
         <div class="value-card reveal reveal-d1">
           <div class="value-emoji">🌱</div>
           <div class="value-title">Compounding effort</div>
-          <div class="value-desc">CGPA 9.26 across five semesters while shipping projects and leading teams isn't luck — it's what consistency looks like over time.</div>
+          <div class="value-desc">CGPA 9.15 across five semesters while shipping projects and leading teams isn't luck — it's what consistency looks like over time.</div>
         </div>
       </div>
     </div>
@@ -323,11 +328,6 @@
         The things that don't fit in a tech stack but say more about who I am.
       </p>
       <div class="beyond-grid">
-        <div class="beyond-card reveal">
-          <div class="beyond-icon">🎨</div>
-          <div class="beyond-title">Visual design</div>
-          <div class="beyond-desc">Canva, Wix Studio, print layouts — I care about how things look, not just how they work.</div>
-        </div>
         <div class="beyond-card reveal reveal-d1">
           <div class="beyond-icon">🎤</div>
           <div class="beyond-title">Stage presence</div>
@@ -351,7 +351,7 @@
         <div class="beyond-card reveal reveal-d1">
           <div class="beyond-icon">💡</div>
           <div class="beyond-title">Constant learner</div>
-          <div class="beyond-desc">Currently going deep on LLM fine-tuning, Kubernetes, and dbt. Always have a tab open with something I don't fully understand yet.</div>
+          <div class="beyond-desc">Currently going deep on LLMs and Systen designs. Always have a tab open with something I don't fully understand yet.</div>
         </div>
       </div>
     </div>

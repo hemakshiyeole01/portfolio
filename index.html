@@ -37,8 +37,6 @@
 .avatar-inner{width:100%;height:100%;border-radius:inherit;background:var(--fog);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:5rem;position:relative;overflow:hidden}
 .avatar-inner::after{content:'';position:absolute;font-size:5rem;background:linear-gradient(135deg,var(--plum),var(--periwinkle));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .avatar-badge{position:absolute;bottom:-10px;right:-10px;background:#fff;border:2px solid var(--lavender);border-radius:50px;padding:.4rem .9rem;font-size:.75rem;font-weight:600;color:var(--plum);box-shadow:0 4px 16px rgba(130,101,157,.2);white-space:nowrap}
-.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.75rem;z-index:1;opacity:0;animation:fade-in 1s ease 1.5s forwards}
-.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--mauve),transparent);animation:scroll-line 2s ease infinite}
 #about{background:var(--surface-white)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3.5rem}
 .about-text p{font-size:1.0625rem;line-height:1.85;color:var(--text-secondary);margin-bottom:1.25rem}
@@ -116,7 +114,7 @@
         <a class="social-link" href="tel:+919699019204" aria-label="Phone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg></a>
       </div>
       <div class="hero-stats">
-        <div class="stat-item"><div class="stat-num">9.26</div><div class="stat-label">CGPA (5 sems)</div></div>
+        <div class="stat-item"><div class="stat-num">9.15</div><div class="stat-label">CGPA (6th sem)</div></div>
         <div class="stat-item"><div class="stat-num">7+</div><div class="stat-label">Projects built</div></div>
         <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">NPTEL medals</div></div>
       </div>
@@ -136,7 +134,7 @@
     <div class="about-grid">
       <div class="about-text reveal">
         <p>I'm a third-year Computer Science student at <strong>RCOEM Nagpur</strong>, specialising in Data Science. My days are split between building real-time data pipelines, training NLP models, and designing interfaces that feel human.</p>
-        <p>What drives me is the moment a messy dataset becomes a story, or a raw idea becomes a working system. I'm equally comfortable in a terminal running Kafka streams and in Figma sketching interaction flows.</p>
+        <p>What drives me is the moment a messy dataset becomes a story, or a raw idea becomes a working system. I'm equally comfortable architecting backend solutions as well as building clean, responsive user interfaces.</p>
         <p>Outside of engineering, I lead creative teams, anchor cultural events, and design merchandise. The best technologists are also great communicators.</p>
         <div style="margin-top:1.5rem">
           <span class="highlight-pill">🌐 English</span><span class="highlight-pill">🗣️ Hindi</span><span class="highlight-pill">📖 Marathi</span><span class="highlight-pill">🎨 Canva</span><span class="highlight-pill">✍️ Anchor / MC</span>
@@ -214,11 +212,22 @@
     <div class="section-label reveal">Journey</div>
     <h2 class="section-title reveal">How I got <em>here</em></h2>
     <div class="timeline">
-      <div class="timeline-item reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="timeline-date">2023 – 2027</div><div class="timeline-title">B.Tech CSE (Data Science)</div><div class="timeline-sub">RCOEM Nagpur</div><div class="timeline-body">Maintaining <strong style="color:var(--deep)">CGPA 9.26</strong> through five semesters while shipping real projects and leading creative teams.</div><span class="timeline-badge">CGPA 9.26 / 10</span></div></div>
-      <div class="timeline-item reveal reveal-delay-1"><div class="timeline-dot" style="background:var(--periwinkle)"></div><div class="timeline-card"><div class="timeline-date">2024 – Present</div><div class="timeline-title">Director of Creatives</div><div class="timeline-sub">Rotaract Club RBU</div><div class="timeline-body">Leading the creative team—social media, banners, merchandise—maintaining a consistent visual identity across all events and campaigns.</div></div></div>
-      <div class="timeline-item reveal reveal-delay-2"><div class="timeline-dot" style="background:var(--mauve)"></div><div class="timeline-card"><div class="timeline-date">2023 – Present</div><div class="timeline-title">Executive, NSS RCOEM</div><div class="timeline-sub">National Service Scheme</div><div class="timeline-body">Grew from volunteer to Executive. Managing volunteer unit, coordinating social initiatives, planning community outreach programs.</div></div></div>
+      <div class="timeline-item reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="timeline-date">2011 – 2021</div><div class="timeline-title">Secondary Education (SSC)</div><div class="timeline-sub">Montfort School, Nagpur</div><div class="timeline-body">Built a strong academic foundation while actively participating in sports and arts, developing discipline, creativity, and a well-rounded character alongside a love for learning.</div><span class="timeline-badge">93.2%</span></div></div>
+      <div class="timeline-item reveal reveal-delay-1"><div class="timeline-dot" style="background:var(--periwinkle)"></div><div class="timeline-card"><div class="timeline-date">2021 – 2023</div><div class="timeline-title">Higher Secondary (HSC)</div><div class="timeline-sub">MKH Sancheti Junior College, Nagpur</div><div class="timeline-body">Pursued Science stream with focus on Mathematics and Computer Science, building the analytical foundation for engineering.</div><span class="timeline-badge">89.17%</span></div></div>
+      <div class="timeline-item reveal reveal-delay-2"><div class="timeline-dot" style="background:var(--mauve)"></div><div class="timeline-card"><div class="timeline-date">2023 – 2027</div><div class="timeline-title">B.Tech CSE (Data Science)</div><div class="timeline-sub">RCOEM Nagpur</div><div class="timeline-body">Maintaining <strong style="color:var(--deep)">CGPA 9.15</strong> through six semesters while shipping real projects and leading creative teams.</div><span class="timeline-badge">CGPA 9.15 / 10</span></div></div>
     </div>
     <div style="margin-top:2rem"><a href="pages/certifications.html" class="btn-secondary">See certifications &amp; wins →</a></div>
+  </div>
+</section>
+
+<section id="positions" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal">Leadership</div>
+    <h2 class="section-title reveal">Positions of <em>Responsibility</em></h2>
+    <div class="positions-grid">
+      <div class="position-card reveal"><div class="position-icon">🎨</div><div class="position-content"><div class="position-date">2024 – Present</div><div class="position-title">Director of Creatives</div><div class="position-org">Rotaract Club RBU</div><div class="position-body">Leading the creative team — social media, banners, merchandise — maintaining a consistent visual identity across all events and campaigns.</div><div class="position-tags"><span class="tag">Branding</span><span class="tag">Design</span><span class="tag">Leadership</span></div></div></div>
+      <div class="position-card reveal reveal-delay-1"><div class="position-icon">🤝</div><div class="position-content"><div class="position-date">2023 – Present</div><div class="position-title">Executive</div><div class="position-org">NSS RCOEM — National Service Scheme</div><div class="position-body">Grew from volunteer to Executive. Managing the volunteer unit, coordinating social initiatives, and planning community outreach programs.</div><div class="position-tags"><span class="tag">Community</span><span class="tag">Outreach</span><span class="tag">Management</span></div></div></div>
+    </div>
   </div>
 </section>
 
@@ -230,7 +239,6 @@
     <div class="contact-grid">
       <div class="reveal">
         <div class="contact-info-item"><div class="contact-icon">📧</div><div><div class="contact-info-label">Email</div><div class="contact-info-value"><a href="mailto:hemakshiyeole1@gmail.com">hemakshiyeole1@gmail.com</a></div></div></div>
-        <div class="contact-info-item"><div class="contact-icon">📱</div><div><div class="contact-info-label">Phone</div><div class="contact-info-value"><a href="tel:+919699019204">+91 96990 19204</a></div></div></div>
         <div class="contact-info-item"><div class="contact-icon">🔗</div><div><div class="contact-info-label">LinkedIn</div><div class="contact-info-value"><a href="https://linkedin.com/in/hemakshi-yeole" target="_blank" rel="noopener">linkedin.com/in/hemakshi-yeole</a></div></div></div>
         <div style="margin-top:2rem"><a href="mailto:hemakshiyeole1@gmail.com" class="btn-primary">✉️ &nbsp;Send a message</a></div>
       </div>
